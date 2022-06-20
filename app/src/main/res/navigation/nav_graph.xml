@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.canbazdev.rickandmortyapp.presentation.onboarding.OnBoardingFragment"
+        android:label="fragment_on_boarding"
+        tools:layout="@layout/fragment_on_boarding">
+        <action
+            android:id="@+id/action_onBoardingFragment_to_charactersFragment"
+            app:destination="@id/charactersFragment"
+            app:popUpTo="@id/onBoardingFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.canbazdev.rickandmortyapp.presentation.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_charactersFragment"
+            app:destination="@id/charactersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/charactersFragment"
+        android:name="com.canbazdev.rickandmortyapp.presentation.characters.CharactersFragment"
+        android:label="fragment_characters"
+        tools:layout="@layout/fragment_characters" />
+    <fragment
+        android:id="@+id/locationsFragment"
+        android:name="com.canbazdev.rickandmortyapp.presentation.locations.LocationsFragment"
+        android:label="fragment_locations"
+        tools:layout="@layout/fragment_locations" />
+    <fragment
+        android:id="@+id/episodesFragment"
+        android:name="com.canbazdev.rickandmortyapp.presentation.episodes.EpisodesFragment"
+        android:label="fragment_episodes"
+        tools:layout="@layout/fragment_episodes" />
+</navigation>

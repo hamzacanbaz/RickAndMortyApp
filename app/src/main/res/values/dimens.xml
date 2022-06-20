@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_2dp">2dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="margin_24dp">24dp</dimen>
+    <dimen name="margin_20dp">20dp</dimen>
+    <dimen name="dp64">64dp</dimen>
+    <dimen name="sp20">20sp</dimen>
+    <dimen name="sp24">24sp</dimen>
+    <dimen name="sp32">32sp</dimen>
+
+</resources>

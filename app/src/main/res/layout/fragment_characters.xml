@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.canbazdev.rickandmortyapp.presentation.characters.CharactersViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.canbazdev.rickandmortyapp.adapters.characters.CharactersAdapter" />
+
+        <variable
+            name="itemDecoration"
+            type="com.canbazdev.rickandmortyapp.adapters.characters.CharactersItemDecoration" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.characters.CharactersFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:setAdapter="@{adapter}"
+            android:setItemDecoration="@{itemDecoration}"
+            android:submitList="@{viewmodel.characters}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/character_item" />
+
+        <ProgressBar
+            android:id="@+id/pb_characters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
+</layout>
