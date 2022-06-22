@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.canbazdev.rickandmortyapp.databinding.CharacterItemBinding
 import com.canbazdev.rickandmortyapp.domain.model.Character
 
@@ -35,9 +34,7 @@ class CharactersAdapter(
 
 
         override fun bind(item: Character) {
-            binding.tvCharacterName.text = item.name
-            println(item.image)
-            Glide.with(itemView.context).load(item.image).into(binding.ivCharacter)
+            binding.character = item
 
         }
 

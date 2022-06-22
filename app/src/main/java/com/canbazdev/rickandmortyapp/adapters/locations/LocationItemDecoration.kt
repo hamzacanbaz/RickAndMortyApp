@@ -1,15 +1,14 @@
-package com.canbazdev.rickandmortyapp.adapters.characters
+package com.canbazdev.rickandmortyapp.adapters.locations
 
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.canbazdev.rickandmortyapp.R
 
-
 /*
-*   Created by hamzacanbaz on 20.06.2022
+*   Created by hamzacanbaz on 23.06.2022
 */
-class CharactersItemDecoration : RecyclerView.ItemDecoration() {
+class LocationItemDecoration : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,

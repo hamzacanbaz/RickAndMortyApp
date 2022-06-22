@@ -1,7 +1,10 @@
 package com.canbazdev.rickandmortyapp.data.remote.api
 
+import com.canbazdev.rickandmortyapp.data.remote.model.characters.CharacterDetail
 import com.canbazdev.rickandmortyapp.data.remote.model.characters.CharactersResponse
+import com.canbazdev.rickandmortyapp.data.remote.model.locations.LocationsResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 /*
 *   Created by hamzacanbaz on 19.06.2022
@@ -9,4 +12,10 @@ import retrofit2.http.GET
 interface RickAndMortyService {
     @GET("character")
     suspend fun getCharacters(): CharactersResponse
+
+    @GET("character/{characterId}")
+    suspend fun getCharacterDetailById(@Path("characterId") characterId: String): CharacterDetail
+
+    @GET("location")
+    suspend fun getLocations(): LocationsResponse
 }

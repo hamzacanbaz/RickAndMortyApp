@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.canbazdev.rickandmortyapp.R
-import com.canbazdev.rickandmortyapp.util.enums.Event
+import com.canbazdev.rickandmortyapp.util.Event
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -45,6 +45,7 @@ class SplashFragment : Fragment() {
                     Event.NavigateToMain -> {
                         findNavController().navigate(R.id.action_splashFragment_to_charactersFragment)
                     }
+                    else -> {}
                 }
             }
         }

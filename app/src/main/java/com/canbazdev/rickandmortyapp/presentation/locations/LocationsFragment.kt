@@ -1,27 +1,45 @@
 package com.canbazdev.rickandmortyapp.presentation.locations
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.canbazdev.rickandmortyapp.R
+import com.canbazdev.rickandmortyapp.adapters.characters.CharactersAdapter
+import com.canbazdev.rickandmortyapp.adapters.characters.CharactersItemDecoration
+import com.canbazdev.rickandmortyapp.adapters.locations.LocationItemDecoration
+import com.canbazdev.rickandmortyapp.adapters.locations.LocationsAdapter
+import com.canbazdev.rickandmortyapp.base.BaseFragment
+import com.canbazdev.rickandmortyapp.databinding.FragmentLocationsBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class LocationsFragment : Fragment() {
+class LocationsFragment : BaseFragment<FragmentLocationsBinding>(R.layout.fragment_locations) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var locationsAdapter: LocationsAdapter
+    private val viewModel: LocationsViewModel by viewModels()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.viewmodel = viewModel
+        observe()
+        locationsAdapter = LocationsAdapter()
+        binding.adapter = locationsAdapter
+        binding.itemDecoration = LocationItemDecoration()
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_locations, container, false)
+    private fun observe() {
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.uiState.collect {
+                if (it == 1) {
+                    println(viewModel.locations.value.size)
+                }
+            }
+        }
     }
+
 
 }

@@ -4,7 +4,7 @@ package com.canbazdev.rickandmortyapp.data.remote.model.characters
 import com.canbazdev.rickandmortyapp.domain.model.Character
 import com.google.gson.annotations.SerializedName
 
-data class Result(
+data class CharacterDetail(
     @SerializedName("created")
     val created: String,
     @SerializedName("episode")
@@ -31,8 +31,8 @@ data class Result(
     val url: String
 )
 
-fun Result.toCharacter(): Character {
+fun CharacterDetail.toCharacter(): Character {
     return Character(
-        id, name, species, status, location, image
+        id, name, species, status, location, image, episode, gender
     )
 }

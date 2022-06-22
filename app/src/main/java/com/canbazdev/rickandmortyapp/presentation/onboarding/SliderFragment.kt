@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.canbazdev.rickandmortyapp.R
 import com.canbazdev.rickandmortyapp.base.BaseFragment
 import com.canbazdev.rickandmortyapp.databinding.FragmentOnboardingFirstBinding
-import com.canbazdev.rickandmortyapp.util.enums.Event
+import com.canbazdev.rickandmortyapp.util.Event
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -40,7 +40,7 @@ class SliderFragment :
                         findNavController().navigate(R.id.action_onBoardingFragment_to_charactersFragment)
                     }
                     else -> {
-                        println(event.name)
+
                     }
                 }
             }

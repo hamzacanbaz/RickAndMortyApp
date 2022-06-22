@@ -5,11 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.canbazdev.rickandmortyapp.adapters.characters.CharactersAdapter
 import com.canbazdev.rickandmortyapp.domain.model.Character
 import com.canbazdev.rickandmortyapp.domain.usecase.characters.GetCharactersUseCase
+import com.canbazdev.rickandmortyapp.util.Event
 import com.canbazdev.rickandmortyapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /*
@@ -21,18 +23,33 @@ class CharactersViewModel @Inject constructor(
 ) : ViewModel(), CharactersAdapter.OnItemClickedListener {
 
     private val _characters = MutableStateFlow<List<Character>>(listOf())
-    val characters: MutableStateFlow<List<Character>> = _characters
+    val characters: StateFlow<List<Character>> = _characters
 
     private val _error = MutableStateFlow("")
-    val error: MutableStateFlow<String> = _error
+    val error: StateFlow<String> = _error
 
     private val _isLoading = MutableStateFlow(false)
-    val isLoading: MutableStateFlow<Boolean> = _isLoading
+    val isLoading: StateFlow<Boolean> = _isLoading
 
     private val _uiState = MutableStateFlow(0)
-    val uiState: MutableStateFlow<Int> = _uiState
+    val uiState: StateFlow<Int> = _uiState
+
+    private val _goToCharacterDetail = MutableStateFlow(false)
+    private val goToCharacterDetail: StateFlow<Boolean> = _goToCharacterDetail
+
+    private val _characterDetailId = MutableStateFlow(0)
+    private val characterDetailId: StateFlow<Int> = _characterDetailId
+
+    private val eventChannel = Channel<Event>(Channel.BUFFERED)
+    val eventsFlow = eventChannel.receiveAsFlow()
+
 
     init {
+        getCharacters()
+        goToCharacterDetail()
+    }
+
+    private fun getCharacters() {
         getCharactersUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
@@ -51,10 +68,24 @@ class CharactersViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    // Gotodetail ile parametre gönderiliyor, burası initten aşağıdaki onclick ile mergele
+    private fun goToCharacterDetail() = viewModelScope.launch {
+        delay(1000)
+        goToCharacterDetail.collect {
+            if (it) {
+                println("go to detail")
+                _goToCharacterDetail.value = false
+                eventChannel.send(Event.NavigateToDetail(characterDetailId.value))
+            }
+        }
 
     }
 
     override fun onItemClicked(position: Int, character: Character) {
-        println(position)
+        _characterDetailId.value = character.id ?: 0
+        _goToCharacterDetail.value = true
+
     }
 }

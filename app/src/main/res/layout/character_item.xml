@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="character"
+            type="com.canbazdev.rickandmortyapp.domain.model.Character" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,10 +18,11 @@
             android:id="@+id/ivCharacter"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/ram2"
+            android:imageUrl="@{character.image}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ram2" />
 
         <TextView
             android:id="@+id/tvCharacterName"
@@ -27,7 +32,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:padding="@dimen/margin_2dp"
-            android:text="Rick Sanchez"
+            android:text="@{character.name}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

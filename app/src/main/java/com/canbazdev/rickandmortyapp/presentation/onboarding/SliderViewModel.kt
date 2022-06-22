@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.canbazdev.rickandmortyapp.R
 import com.canbazdev.rickandmortyapp.data.model.OnBoardingModel
 import com.canbazdev.rickandmortyapp.data.repository.DataStoreRepository
-import com.canbazdev.rickandmortyapp.util.enums.Event
+import com.canbazdev.rickandmortyapp.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel

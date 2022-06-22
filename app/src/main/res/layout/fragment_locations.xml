@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.locations.LocationsFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.canbazdev.rickandmortyapp.presentation.locations.LocationsViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.canbazdev.rickandmortyapp.adapters.locations.LocationsAdapter" />
+
+        <variable
+            name="itemDecoration"
+            type="com.canbazdev.rickandmortyapp.adapters.locations.LocationItemDecoration" />
+
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".presentation.characters.CharactersFragment">
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:setAdapter="@{adapter}"
+            android:setItemDecoration="@{itemDecoration}"
+            android:submitLocationsList="@{viewmodel.locations}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/location_item" />
+
+        <ProgressBar
+            android:id="@+id/pb_characters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
+</layout>
