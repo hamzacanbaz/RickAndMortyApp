@@ -12,7 +12,7 @@ import com.canbazdev.rickandmortyapp.domain.model.Character
 *   Created by hamzacanbaz on 20.06.2022
 */
 class CharactersAdapter(
-    private val listener: OnItemClickedListener
+    private val listener: OnItemClickedListener?
 ) : RecyclerView.Adapter<CharactersAdapter.CharactersViewHolder>() {
 
     var characterList = ArrayList<Character>()
@@ -41,7 +41,7 @@ class CharactersAdapter(
         override fun onClick(p0: View?) {
             val position = layoutPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onItemClicked(position, characterList[position])
+                listener?.onItemClicked(position, characterList[position])
             }
         }
 

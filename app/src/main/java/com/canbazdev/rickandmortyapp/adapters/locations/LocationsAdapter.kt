@@ -5,29 +5,46 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.canbazdev.rickandmortyapp.adapters.characters.CharactersAdapter
 import com.canbazdev.rickandmortyapp.databinding.LocationItemBinding
+import com.canbazdev.rickandmortyapp.domain.model.Character
 import com.canbazdev.rickandmortyapp.domain.model.Location
 
 /*
 *   Created by hamzacanbaz on 23.06.2022
 */
 class LocationsAdapter(
+    private val listener: OnItemClickedListener
 ) : RecyclerView.Adapter<LocationsAdapter.LocationsViewHolder>() {
 
-    var locationsList = ArrayList<Location>()
+    private var locationsList = ArrayList<Location>()
+    private var charactersAdapter = CharactersAdapter(null)
 
     @SuppressLint("NotifyDataSetChanged")
     fun setLocationsList(list: List<Location>) {
         locationsList.clear()
         locationsList.addAll(list)
         notifyDataSetChanged()
-
     }
 
     inner class LocationsViewHolder(private val binding: LocationItemBinding) :
-        BaseViewHolder<Location>(binding.root) {
+        BaseViewHolder<Location>(binding.root), View.OnClickListener {
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
         override fun bind(item: Location) {
             binding.location = item
+            binding.rvNestedCharacter.adapter = charactersAdapter
+        }
+
+        override fun onClick(p0: View?) {
+            val position = layoutPosition
+            if (position != RecyclerView.NO_POSITION) {
+                openOrCloseCharactersSection(position)
+                setUpNestedCharacters(layoutPosition, charactersAdapter)
+            }
         }
 
 
@@ -50,6 +67,27 @@ class LocationsAdapter(
 
     override fun onBindViewHolder(holder: LocationsViewHolder, position: Int) {
         holder.bind(locationsList[position])
+    }
+
+    interface OnItemClickedListener {
+        fun onItemClicked(position: Int, location: Location)
+    }
+
+    // TODO Burası doğru mu acaba
+    private fun openOrCloseCharactersSection(position: Int) {
+        locationsList[position].isDetailsOpen = locationsList[position].isDetailsOpen == false
+        notifyItemChanged(position)
+
+    }
+
+    private fun setUpNestedCharacters(position: Int, charactersAdapter: CharactersAdapter) {
+        val nestedCharacterList: ArrayList<Character> = ArrayList()
+
+        locationsList[position].residents?.onEach {
+            nestedCharacterList.add(Character())
+        }
+        charactersAdapter.characterList = nestedCharacterList
+
     }
 
 

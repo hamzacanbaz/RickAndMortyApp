@@ -5,12 +5,11 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.canbazdev.rickandmortyapp.R
-import com.canbazdev.rickandmortyapp.adapters.characters.CharactersAdapter
-import com.canbazdev.rickandmortyapp.adapters.characters.CharactersItemDecoration
 import com.canbazdev.rickandmortyapp.adapters.locations.LocationItemDecoration
 import com.canbazdev.rickandmortyapp.adapters.locations.LocationsAdapter
 import com.canbazdev.rickandmortyapp.base.BaseFragment
 import com.canbazdev.rickandmortyapp.databinding.FragmentLocationsBinding
+import com.canbazdev.rickandmortyapp.util.Event
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -22,9 +21,9 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>(R.layout.fragme
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.viewmodel = viewModel
         observe()
-        locationsAdapter = LocationsAdapter()
+        binding.viewmodel = viewModel
+        locationsAdapter = LocationsAdapter(viewModel)
         binding.adapter = locationsAdapter
         binding.itemDecoration = LocationItemDecoration()
 
@@ -33,12 +32,33 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>(R.layout.fragme
     private fun observe() {
 
         lifecycleScope.launchWhenStarted {
+            viewModel.eventsFlow.collect { event ->
+                when (event) {
+                    is Event.OpenTheLocationDetail -> {
+                        val bundle = Bundle()
+                        bundle.putString("characterId", event.locationPosition.toString())
+                    }
+
+                    else -> {
+                    }
+                }
+            }
+        }
+
+
+        lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect {
+                if (it != 0) {
+                    binding.pbCharacters.visibility = View.GONE
+                }
+
                 if (it == 1) {
                     println(viewModel.locations.value.size)
                 }
             }
         }
+
+
     }
 
 

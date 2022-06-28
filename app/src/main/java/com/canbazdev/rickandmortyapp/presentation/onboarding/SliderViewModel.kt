@@ -74,7 +74,6 @@ class SliderViewModel @Inject constructor(
 
 
     fun setOpenedFirstTime() {
-        println("going to main fragment")
         viewModelScope.launch(Dispatchers.IO) {
             eventChannel.send(Event.NavigateToMain)
             dataStoreRepository.setOpenedFirstTime(true)

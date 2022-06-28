@@ -1,12 +1,14 @@
 package com.canbazdev.rickandmortyapp.adapters
 
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.canbazdev.rickandmortyapp.R
 import com.canbazdev.rickandmortyapp.adapters.characters.CharactersAdapter
 import com.canbazdev.rickandmortyapp.adapters.locations.LocationsAdapter
 import com.canbazdev.rickandmortyapp.domain.model.Character
@@ -54,4 +56,5 @@ fun submitList(recyclerView: RecyclerView, list: List<Character>?) {
 fun submitLocationsList(recyclerView: RecyclerView, list: List<Location>?) {
     val adapter = recyclerView.adapter as LocationsAdapter?
     adapter?.setLocationsList(list ?: listOf())
+    adapter?.notifyDataSetChanged()
 }

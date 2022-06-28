@@ -33,6 +33,7 @@ class CharactersFragment() : BaseFragment<FragmentCharactersBinding>(R.layout.fr
     }
 
     private fun observe() {
+
         lifecycleScope.launchWhenStarted {
             viewModel.eventsFlow.collect { event ->
                 when (event) {

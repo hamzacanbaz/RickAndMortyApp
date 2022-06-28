@@ -75,7 +75,6 @@ class CharactersViewModel @Inject constructor(
         delay(1000)
         goToCharacterDetail.collect {
             if (it) {
-                println("go to detail")
                 _goToCharacterDetail.value = false
                 eventChannel.send(Event.NavigateToDetail(characterDetailId.value))
             }

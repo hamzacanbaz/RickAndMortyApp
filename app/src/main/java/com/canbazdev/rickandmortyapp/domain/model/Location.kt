@@ -7,5 +7,6 @@ data class Location(
     val id: Int? = null,
     val name: String? = null,
     val type: String? = null,
-    val residents: List<String>? = null
+    val residents: List<String>? = null,
+    var isDetailsOpen: Boolean? = false
 )

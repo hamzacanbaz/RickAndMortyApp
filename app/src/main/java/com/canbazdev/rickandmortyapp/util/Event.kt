@@ -7,4 +7,5 @@ sealed class Event() {
     object NavigateToMain : Event()
     object NavigateToOnBoardingScreen : Event()
     data class NavigateToDetail(var characterId: Int) : Event()
+    data class OpenTheLocationDetail(var locationPosition: Int) : Event()
 }
