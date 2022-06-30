@@ -20,11 +20,14 @@
     </data>
 
     <FrameLayout
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.characters.CharactersFragment">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:descendantFocusability="blocksDescendants"
+            android:nestedScrollingEnabled="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:setAdapter="@{adapter}"

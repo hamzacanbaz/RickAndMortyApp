@@ -1,33 +1,30 @@
 package com.canbazdev.rickandmortyapp.adapters.locations
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.canbazdev.rickandmortyapp.adapters.characters.CharactersAdapter
 import com.canbazdev.rickandmortyapp.databinding.LocationItemBinding
+import com.canbazdev.rickandmortyapp.databinding.NestedCharacterItemBinding
 import com.canbazdev.rickandmortyapp.domain.model.Character
 import com.canbazdev.rickandmortyapp.domain.model.Location
 
 /*
 *   Created by hamzacanbaz on 23.06.2022
 */
-class LocationsAdapter(
-    private val listener: OnItemClickedListener
-) : RecyclerView.Adapter<LocationsAdapter.LocationsViewHolder>() {
+class LocationsAdapter : RecyclerView.Adapter<LocationsAdapter.LocationsViewHolder>() {
 
     private var locationsList = ArrayList<Location>()
-    private var charactersAdapter = CharactersAdapter(null)
+    private var nestedCharacterAdapter = NestedCharacterAdapter()
 
-    @SuppressLint("NotifyDataSetChanged")
     fun setLocationsList(list: List<Location>) {
         locationsList.clear()
         locationsList.addAll(list)
         notifyDataSetChanged()
     }
 
-    inner class LocationsViewHolder(private val binding: LocationItemBinding) :
+    inner class LocationsViewHolder(private val binding: ViewDataBinding) :
         BaseViewHolder<Location>(binding.root), View.OnClickListener {
 
         init {
@@ -35,25 +32,38 @@ class LocationsAdapter(
         }
 
         override fun bind(item: Location) {
-            binding.location = item
-            binding.rvNestedCharacter.adapter = charactersAdapter
+            if (binding is LocationItemBinding) {
+                binding.location = item
+            } else if (binding is NestedCharacterItemBinding) {
+                binding.location = item
+                binding.rvNestedCharacter.adapter = nestedCharacterAdapter
+            }
+
+            setUpNestedCharacters(layoutPosition, nestedCharacterAdapter)
+//            binding.rvNestedCharacter.adapter = nestedCharacterAdapter
         }
 
         override fun onClick(p0: View?) {
             val position = layoutPosition
             if (position != RecyclerView.NO_POSITION) {
                 openOrCloseCharactersSection(position)
-                setUpNestedCharacters(layoutPosition, charactersAdapter)
             }
         }
 
 
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = LocationItemBinding.inflate(inflater, parent, false)
-        return LocationsViewHolder(binding)
+        if (viewType == 0) {
+            val binding = NestedCharacterItemBinding.inflate(inflater, parent, false)
+            return LocationsViewHolder(binding)
+        } else {
+            val binding = LocationItemBinding.inflate(inflater, parent, false)
+            return LocationsViewHolder(binding)
+
+        }
     }
 
 
@@ -80,14 +90,25 @@ class LocationsAdapter(
 
     }
 
-    private fun setUpNestedCharacters(position: Int, charactersAdapter: CharactersAdapter) {
+
+    override fun getItemViewType(position: Int): Int {
+        return if (locationsList[position].isDetailsOpen == true) {
+            0
+        } else {
+            1
+        }
+    }
+
+    private fun setUpNestedCharacters(
+        position: Int,
+        nestedCharacterAdapter: NestedCharacterAdapter
+    ) {
         val nestedCharacterList: ArrayList<Character> = ArrayList()
 
         locationsList[position].residents?.onEach {
             nestedCharacterList.add(Character())
         }
-        charactersAdapter.characterList = nestedCharacterList
-
+        nestedCharacterAdapter.characterList = nestedCharacterList
     }
 
 

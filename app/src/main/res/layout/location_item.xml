@@ -49,21 +49,25 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <FrameLayout
-            android:id="@+id/flCharacters"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="@{location.isDetailsOpen ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvLocationName">
+<!--        <FrameLayout-->
+<!--            android:id="@+id/flCharacters"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:focusableInTouchMode="true"-->
+<!--            android:visibility="@{location.isDetailsOpen ? View.VISIBLE : View.GONE}"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tvLocationName">-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:id="@+id/rvNestedCharacter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </FrameLayout>
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:descendantFocusability="blocksDescendants"-->
+<!--                android:focusable="false"-->
+<!--                android:id="@+id/rvNestedCharacter"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:nestedScrollingEnabled="false"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />-->
+<!--        </FrameLayout>-->
 
     </LinearLayout>
 </layout>
