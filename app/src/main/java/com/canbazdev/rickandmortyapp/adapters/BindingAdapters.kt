@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.canbazdev.rickandmortyapp.R
 import com.canbazdev.rickandmortyapp.adapters.characters.CharactersAdapter
 import com.canbazdev.rickandmortyapp.adapters.locations.LocationsAdapter
+import com.canbazdev.rickandmortyapp.adapters.locations.NestedCharacterAdapter
 import com.canbazdev.rickandmortyapp.domain.model.Character
 import com.canbazdev.rickandmortyapp.domain.model.Location
 

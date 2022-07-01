@@ -41,7 +41,7 @@ class LocationsAdapter(
                 binding.rvNestedCharacter.adapter = nestedCharacterAdapter
             }
 
-            setUpNestedCharacters(layoutPosition, nestedCharacterAdapter)
+            //  setUpNestedCharacters(layoutPosition, nestedCharacterAdapter)
 //            binding.rvNestedCharacter.adapter = nestedCharacterAdapter
         }
 
@@ -51,10 +51,9 @@ class LocationsAdapter(
                 openOrCloseCharactersSection(position)
                 val nestedCharactersList =
                     listener?.onItemClicked(position, locationsList[position].residents!!)
-                if (nestedCharactersList != null) {
+                if (!nestedCharactersList.isNullOrEmpty()) {
                     nestedCharacterAdapter.setCharacterList(nestedCharactersList.toList())
                 }
-                nestedCharacterAdapter.notifyDataSetChanged()
             }
         }
 

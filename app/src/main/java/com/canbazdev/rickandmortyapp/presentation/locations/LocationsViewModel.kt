@@ -38,10 +38,12 @@ class LocationsViewModel @Inject constructor(
     private val locationPosition: StateFlow<Int> = _locationPosition
 
     private val _nestedCharactersList = MutableStateFlow<ArrayList<Character>>(arrayListOf())
-    private val nestedCharactersList: StateFlow<ArrayList<Character>> = _nestedCharactersList
+    val nestedCharactersList: StateFlow<ArrayList<Character>> = _nestedCharactersList
 
     private val eventChannel = Channel<Event>(Channel.BUFFERED)
     val eventsFlow = eventChannel.receiveAsFlow()
+
+    private val map = mapOf("8" to "Hamza", "14" to "Ahmet", "3" to "Esma")
 
 
     init {
@@ -93,6 +95,7 @@ class LocationsViewModel @Inject constructor(
                             }
                         }
                         is Resource.Loading -> {
+                            _nestedCharactersList.value.add(Character(name = "Test"))
                             println("loading")
                         }
                         is Resource.Error -> {
@@ -102,7 +105,7 @@ class LocationsViewModel @Inject constructor(
                 }.launchIn(viewModelScope)
             }
         }
-
+        println("value" + nestedCharactersList.value)
         return nestedCharactersList.value
 
     }

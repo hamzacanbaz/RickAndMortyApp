@@ -1,6 +1,5 @@
 package com.canbazdev.rickandmortyapp.adapters.locations
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +10,11 @@ import com.canbazdev.rickandmortyapp.domain.model.Character
 /*
 *   Created by hamzacanbaz on 29.06.2022
 */
-class NestedCharacterAdapter() :
+class NestedCharacterAdapter :
     RecyclerView.Adapter<NestedCharacterAdapter.NestedCharactersViewHolder>() {
 
     var characterList = ArrayList<Character>()
 
-    @SuppressLint("NotifyDataSetChanged")
     fun setCharacterList(list: List<Character>) {
         characterList.clear()
         characterList.addAll(list)
