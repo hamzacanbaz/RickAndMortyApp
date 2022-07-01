@@ -3,7 +3,9 @@ package com.canbazdev.rickandmortyapp.presentation.locations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.canbazdev.rickandmortyapp.adapters.locations.LocationsAdapter
+import com.canbazdev.rickandmortyapp.domain.model.Character
 import com.canbazdev.rickandmortyapp.domain.model.Location
+import com.canbazdev.rickandmortyapp.domain.usecase.character_detail.GetCharacterDetailUseCase
 import com.canbazdev.rickandmortyapp.domain.usecase.locations.GetLocationsUseCase
 import com.canbazdev.rickandmortyapp.util.Event
 import com.canbazdev.rickandmortyapp.util.Resource
@@ -19,7 +21,8 @@ import javax.inject.Inject
 */
 @HiltViewModel
 class LocationsViewModel @Inject constructor(
-    private val getLocationsUseCase: GetLocationsUseCase
+    private val getLocationsUseCase: GetLocationsUseCase,
+    private val getCharacterDetailUseCase: GetCharacterDetailUseCase
 ) : ViewModel(), LocationsAdapter.OnItemClickedListener {
 
     private val _locations = MutableStateFlow<List<Location>>(listOf())
@@ -33,6 +36,9 @@ class LocationsViewModel @Inject constructor(
 
     private val _locationPosition = MutableStateFlow(0)
     private val locationPosition: StateFlow<Int> = _locationPosition
+
+    private val _nestedCharactersList = MutableStateFlow<ArrayList<Character>>(arrayListOf())
+    private val nestedCharactersList: StateFlow<ArrayList<Character>> = _nestedCharactersList
 
     private val eventChannel = Channel<Event>(Channel.BUFFERED)
     val eventsFlow = eventChannel.receiveAsFlow()
@@ -70,15 +76,35 @@ class LocationsViewModel @Inject constructor(
                 eventChannel.send(Event.OpenTheLocationDetail(locationPosition.value))
             }
         }
-
     }
 
+    // TODO burada tüm response'lar gelmeden döndürme işlemi yapma
+    override fun onItemClicked(position: Int, idList: List<String>): ArrayList<Character> {
+        _nestedCharactersList.value.clear()
+        idList.let { list ->
+            list.forEach { id ->
+                getCharacterDetailUseCase(id.last().toString()).onEach { result ->
+                    when (result) {
+                        is Resource.Success -> {
+                            result.data?.let { character ->
+                                println("character name:" + character.name)
+                                _nestedCharactersList.value.add(character)
+                                println("character size:" + nestedCharactersList.value.size)
+                            }
+                        }
+                        is Resource.Loading -> {
+                            println("loading")
+                        }
+                        is Resource.Error -> {
+                            println("error")
+                        }
+                    }
+                }.launchIn(viewModelScope)
+            }
+        }
 
-    override fun onItemClicked(position: Int, location: Location) {
-        _locationPosition.value = location.id ?: 0
-        _openTheLocationDetails.value = true
-        _locations.value[position].isDetailsOpen = true
-        println(locations.value[position].isDetailsOpen)
+        return nestedCharactersList.value
+
     }
 
 }

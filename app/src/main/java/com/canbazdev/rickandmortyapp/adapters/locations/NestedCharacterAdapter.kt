@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.canbazdev.rickandmortyapp.databinding.NestedCharacterItemBinding
-import com.canbazdev.rickandmortyapp.databinding.TestItemBinding
 import com.canbazdev.rickandmortyapp.domain.model.Character
 
 /*
@@ -25,12 +24,12 @@ class NestedCharacterAdapter() :
 
     }
 
-    inner class NestedCharactersViewHolder(private val binding: TestItemBinding) :
+    inner class NestedCharactersViewHolder(private val binding: NestedCharacterItemBinding) :
         BaseViewHolder<Character>(binding.root) {
 
 
         override fun bind(item: Character) {
-//            binding.character = item
+            binding.character = item
         }
 
 
@@ -41,7 +40,7 @@ class NestedCharacterAdapter() :
         viewType: Int
     ): NestedCharacterAdapter.NestedCharactersViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = TestItemBinding.inflate(inflater, parent, false)
+        val binding = NestedCharacterItemBinding.inflate(inflater, parent, false)
         return NestedCharactersViewHolder(binding)
     }
 

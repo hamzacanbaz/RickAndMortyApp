@@ -23,7 +23,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>(R.layout.fragme
         super.onViewCreated(view, savedInstanceState)
         observe()
         binding.viewmodel = viewModel
-        locationsAdapter = LocationsAdapter()
+        locationsAdapter = LocationsAdapter(viewModel)
         binding.adapter = locationsAdapter
         binding.itemDecoration = LocationItemDecoration()
 

@@ -1,73 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
-        <import type="android.view.View" />
-
         <variable
-            name="location"
-            type="com.canbazdev.rickandmortyapp.domain.model.Location" />
+            name="character"
+            type="com.canbazdev.rickandmortyapp.domain.model.Character" />
     </data>
 
-    <LinearLayout
+    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/location_bg">
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@color/primary"
+            android:text="asdasd"
+            tools:text="asdas" />
 
-            <ImageView
-                android:id="@+id/ivLocationIcon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="18dp"
-
-                android:src="@drawable/placeholder"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvLocationName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_16dp"
-                android:text="@{location.name}"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp20"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ivLocationIcon"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Location" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <FrameLayout
-            android:id="@+id/flCharacters"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusableInTouchMode="true"
-            android:visibility="@{location.isDetailsOpen ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvLocationName">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvNestedCharacter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:descendantFocusability="blocksDescendants"
-                android:focusable="false"
-                android:nestedScrollingEnabled="false"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </FrameLayout>
-
-    </LinearLayout>
+    </FrameLayout>
 </layout>
