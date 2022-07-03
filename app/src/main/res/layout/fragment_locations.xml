@@ -11,11 +11,11 @@
 
         <variable
             name="adapter"
-            type="com.canbazdev.rickandmortyapp.adapters.locations.LocationsAdapter" />
+            type="com.canbazdev.rickandmortyapp.presentation.locations.LocationsAdapter" />
 
         <variable
             name="itemDecoration"
-            type="com.canbazdev.rickandmortyapp.adapters.locations.LocationItemDecoration" />
+            type="com.canbazdev.rickandmortyapp.presentation.locations.LocationItemDecoration" />
 
     </data>
 

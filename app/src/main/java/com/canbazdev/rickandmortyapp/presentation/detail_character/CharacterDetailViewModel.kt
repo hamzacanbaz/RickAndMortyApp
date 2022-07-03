@@ -28,6 +28,9 @@ class CharacterDetailViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(0)
     val uiState: StateFlow<Int> = _uiState
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading
+
     init {
         savedStateHandle.get<String>(Constants.CHARACTER_DETAIL)?.let { characterId ->
             getCharacterDetail(characterId)
@@ -43,13 +46,16 @@ class CharacterDetailViewModel @Inject constructor(
                     result.data?.let {
                         _character.value = it
                         _uiState.value = 1
+                        _isLoading.value = false
                     }
                 }
                 is Resource.Error -> {
                     _uiState.value = -1
+                    _isLoading.value = true
                 }
                 is Resource.Loading -> {
                     _uiState.value = 0
+                    _isLoading.value = true
                 }
             }
         }.launchIn(viewModelScope)

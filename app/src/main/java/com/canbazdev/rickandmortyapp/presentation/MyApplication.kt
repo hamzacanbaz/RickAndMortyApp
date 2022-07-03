@@ -1,4 +1,4 @@
-package com.canbazdev.rickandmortyapp
+package com.canbazdev.rickandmortyapp.presentation
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

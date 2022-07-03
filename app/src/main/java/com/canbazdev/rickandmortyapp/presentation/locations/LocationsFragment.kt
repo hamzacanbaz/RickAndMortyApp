@@ -5,9 +5,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.canbazdev.rickandmortyapp.R
-import com.canbazdev.rickandmortyapp.adapters.locations.LocationItemDecoration
-import com.canbazdev.rickandmortyapp.adapters.locations.LocationsAdapter
-import com.canbazdev.rickandmortyapp.base.BaseFragment
+import com.canbazdev.rickandmortyapp.presentation.base.BaseFragment
 import com.canbazdev.rickandmortyapp.databinding.FragmentLocationsBinding
 import com.canbazdev.rickandmortyapp.util.Event
 import dagger.hilt.android.AndroidEntryPoint

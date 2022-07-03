@@ -1,4 +1,4 @@
-package com.canbazdev.rickandmortyapp.adapters.locations
+package com.canbazdev.rickandmortyapp.presentation.locations
 
 import android.graphics.Rect
 import android.view.View

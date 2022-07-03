@@ -1,9 +1,8 @@
-package com.canbazdev.rickandmortyapp.adapters
+package com.canbazdev.rickandmortyapp.presentation.onboarding
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.canbazdev.rickandmortyapp.presentation.onboarding.SliderFragment
 
 /*
 *   Created by hamzacanbaz on 19.06.2022

@@ -1,4 +1,4 @@
-package com.canbazdev.rickandmortyapp.adapters.characters
+package com.canbazdev.rickandmortyapp.presentation.characters
 
 import android.graphics.Rect
 import android.view.View
@@ -9,7 +9,7 @@ import com.canbazdev.rickandmortyapp.R
 /*
 *   Created by hamzacanbaz on 20.06.2022
 */
-class CharactersItemDecoration : RecyclerView.ItemDecoration() {
+class CharactersItemForLinearLayoutDecoration : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -19,20 +19,11 @@ class CharactersItemDecoration : RecyclerView.ItemDecoration() {
     ) {
         val spacing = view.resources.getDimensionPixelSize(R.dimen.margin_24dp)
         val isFirstItem = parent.getChildAdapterPosition(view) == 0
-        val isSecondItem = parent.getChildAdapterPosition(view) == 1
-        val isItemEven = parent.getChildAdapterPosition(view) % 2 == 0
 
         with(outRect) {
-            if (isFirstItem || isSecondItem) top = spacing
+            if (isFirstItem) top = spacing
             bottom = spacing
-            if (isItemEven) {
-                left = spacing
-                right = spacing / 2
-            } else {
-                right = spacing
-                left = spacing / 2
-
-            }
+            left = spacing
 
         }
     }

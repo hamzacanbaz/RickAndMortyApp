@@ -5,173 +5,194 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.canbazdev.rickandmortyapp.presentation.detail_character.CharacterDetailViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_0.4"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.4" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_0.45"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.45" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_0.75"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.7" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_0.3"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.1" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvCharacter"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:cardElevation="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_0.4"
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:setAlpha="@{viewModel.isLoading}">
 
-            <ImageView
-                android:id="@+id/ivCharacterImage"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_0.4"
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.4" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_0.45"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.45" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_0.75"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.7" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_0.3"
+                android:layout_width="@dimen/dp_1"
                 android:layout_height="match_parent"
-                android:background="@drawable/cardview_bg"
-                android:imageUrl="@{viewModel.character.image}"
-                android:padding="40dp"
-                tools:src="@drawable/ram5" />
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.1" />
 
-        </androidx.cardview.widget.CardView>
-
-
-
-        <TextView
-            android:id="@+id/tvCharacterNameInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Character Name:"
-            android:textColor="@color/primary_dark"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/tvCharacterStatusInfo"
-            app:layout_constraintStart_toStartOf="@id/guideline_0.3"
-            app:layout_constraintTop_toBottomOf="@id/guideline_0.45"
-            app:layout_constraintVertical_chainStyle="spread_inside" />
-
-        <TextView
-            android:id="@+id/tvCharacterName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_16dp"
-            android:layout_marginBottom="@dimen/margin_8dp"
-            android:gravity="center"
-            android:text="@{viewModel.character.name}"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBaseline_toBaselineOf="@id/tvCharacterNameInfo"
-            app:layout_constraintStart_toEndOf="@id/tvCharacterNameInfo"
-            tools:text="Rick Sanchez" />
-
-        <TextView
-            android:id="@+id/tvCharacterStatusInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Character Status:"
-            android:textColor="@color/primary_dark"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/tvCharacterSpeciesInfo"
-            app:layout_constraintStart_toStartOf="@id/guideline_0.3"
-            app:layout_constraintTop_toBottomOf="@id/tvCharacterNameInfo" />
-
-        <TextView
-            android:id="@+id/tvCharacterStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_16dp"
-            android:layout_marginBottom="@dimen/margin_8dp"
-            android:gravity="center"
-            android:text="@{viewModel.character.status}"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBaseline_toBaselineOf="@id/tvCharacterStatusInfo"
-            app:layout_constraintStart_toEndOf="@id/tvCharacterStatusInfo" />
-
-        <TextView
-            android:id="@+id/tvCharacterSpeciesInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Character Species:"
-            android:textColor="@color/primary_dark"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/tvCharacterTypeInfo"
-            app:layout_constraintStart_toStartOf="@id/guideline_0.3"
-            app:layout_constraintTop_toBottomOf="@id/tvCharacterStatusInfo" />
-
-        <TextView
-            android:id="@+id/tvCharacterSpecies"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_16dp"
-            android:layout_marginBottom="@dimen/margin_8dp"
-            android:gravity="center"
-            android:text="@{viewModel.character.species}"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBaseline_toBaselineOf="@id/tvCharacterSpeciesInfo"
-            app:layout_constraintStart_toEndOf="@id/tvCharacterSpeciesInfo" />
-
-        <TextView
-            android:id="@+id/tvCharacterTypeInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Character Gender:"
-            android:textColor="@color/primary_dark"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/guideline_0.75"
-            app:layout_constraintStart_toStartOf="@id/guideline_0.3"
-            app:layout_constraintTop_toBottomOf="@id/tvCharacterSpeciesInfo" />
-
-        <TextView
-            android:id="@+id/tvCharacterType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_16dp"
-            android:layout_marginBottom="@dimen/margin_8dp"
-            android:gravity="center"
-            android:text="@{viewModel.character.gender}"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBaseline_toBaselineOf="@id/tvCharacterTypeInfo"
-            app:layout_constraintStart_toEndOf="@id/tvCharacterTypeInfo" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvCharacter"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0"
+                app:cardElevation="@dimen/dp_0"
+                app:layout_constraintBottom_toTopOf="@+id/guideline_0.4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/ivCharacterImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cardview_bg"
+                    android:contentDescription="@string/character_image"
+                    android:imageUrl="@{viewModel.character.image}"
+                    android:padding="@dimen/dp_40"
+                    tools:src="@drawable/ram5" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/tvCharacterNameInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_name"
+                android:textColor="@color/primary_dark"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tvCharacterStatusInfo"
+                app:layout_constraintStart_toStartOf="@id/guideline_0.3"
+                app:layout_constraintTop_toBottomOf="@id/guideline_0.45"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
+
+            <TextView
+                android:id="@+id/tvCharacterName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginBottom="@dimen/margin_8dp"
+                android:gravity="center"
+                android:text="@{viewModel.character.name}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvCharacterNameInfo"
+                app:layout_constraintStart_toEndOf="@id/tvCharacterNameInfo"
+                tools:text="Rick Sanchez" />
+
+            <TextView
+                android:id="@+id/tvCharacterStatusInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_status"
+                android:textColor="@color/primary_dark"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tvCharacterSpeciesInfo"
+                app:layout_constraintStart_toStartOf="@id/guideline_0.3"
+                app:layout_constraintTop_toBottomOf="@id/tvCharacterNameInfo" />
+
+            <TextView
+                android:id="@+id/tvCharacterStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginBottom="@dimen/margin_8dp"
+                android:gravity="center"
+                android:text="@{viewModel.character.status}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvCharacterStatusInfo"
+                app:layout_constraintStart_toEndOf="@id/tvCharacterStatusInfo" />
+
+            <TextView
+                android:id="@+id/tvCharacterSpeciesInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_species"
+                android:textColor="@color/primary_dark"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tvCharacterTypeInfo"
+                app:layout_constraintStart_toStartOf="@id/guideline_0.3"
+                app:layout_constraintTop_toBottomOf="@id/tvCharacterStatusInfo" />
+
+            <TextView
+                android:id="@+id/tvCharacterSpecies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginBottom="@dimen/margin_8dp"
+                android:gravity="center"
+                android:text="@{viewModel.character.species}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvCharacterSpeciesInfo"
+                app:layout_constraintStart_toEndOf="@id/tvCharacterSpeciesInfo" />
+
+            <TextView
+                android:id="@+id/tvCharacterTypeInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_gender"
+                android:textColor="@color/primary_dark"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/guideline_0.75"
+                app:layout_constraintStart_toStartOf="@id/guideline_0.3"
+                app:layout_constraintTop_toBottomOf="@id/tvCharacterSpeciesInfo" />
+
+            <TextView
+                android:id="@+id/tvCharacterType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginBottom="@dimen/margin_8dp"
+                android:gravity="center"
+                android:text="@{viewModel.character.gender}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvCharacterTypeInfo"
+                app:layout_constraintStart_toEndOf="@id/tvCharacterTypeInfo" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
 </layout>

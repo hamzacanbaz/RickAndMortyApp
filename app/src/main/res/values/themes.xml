@@ -14,15 +14,18 @@
         <!-- Customize your theme here. -->
     </style>
 
-<!--    <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen">-->
-<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/r2</item>-->
-<!--        <item name="android:statusBarColor">@color/primary_dark</item>-->
-<!--        <item name="postSplashScreenTheme">@style/Theme.RickAndMortyApp</item>-->
+    <!--    <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen">-->
+    <!--        <item name="windowSplashScreenAnimatedIcon">@drawable/r2</item>-->
+    <!--        <item name="android:statusBarColor">@color/primary_dark</item>-->
+    <!--        <item name="postSplashScreenTheme">@style/Theme.RickAndMortyApp</item>-->
 
-<!--    </style>-->
+    <!--    </style>-->
 
-<!--    <style name="Theme.IconBg" parent="Theme.SplashScreen.IconBackground">-->
-<!--        <item name="windowSplashScreenBackground">@android:color/white</item>-->
-<!--    </style>-->
+    <!--    <style name="Theme.IconBg" parent="Theme.SplashScreen.IconBackground">-->
+    <!--        <item name="windowSplashScreenBackground">@android:color/white</item>-->
+    <!--    </style>-->
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/white</item>
+    </style>
 
 </resources>

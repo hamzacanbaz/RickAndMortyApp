@@ -1,4 +1,4 @@
-package com.canbazdev.rickandmortyapp.base
+package com.canbazdev.rickandmortyapp.presentation.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

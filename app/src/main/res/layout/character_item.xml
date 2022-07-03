@@ -16,8 +16,9 @@
 
         <ImageView
             android:id="@+id/ivCharacter"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_120"
+            android:contentDescription="@string/character_image"
             android:imageUrl="@{character.image}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,7 @@
 
         <TextView
             android:id="@+id/tvCharacterName"
-            android:layout_width="120dp"
+            android:layout_width="@dimen/dp_120"
             android:layout_height="wrap_content"
             android:background="@color/primary_dark"
             android:gravity="center"

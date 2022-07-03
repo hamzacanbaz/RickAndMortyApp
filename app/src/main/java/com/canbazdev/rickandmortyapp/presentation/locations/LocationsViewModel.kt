@@ -2,7 +2,6 @@ package com.canbazdev.rickandmortyapp.presentation.locations
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.canbazdev.rickandmortyapp.adapters.locations.LocationsAdapter
 import com.canbazdev.rickandmortyapp.domain.model.Character
 import com.canbazdev.rickandmortyapp.domain.model.Location
 import com.canbazdev.rickandmortyapp.domain.usecase.character_detail.GetCharacterDetailUseCase

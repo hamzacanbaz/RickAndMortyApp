@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -11,26 +10,25 @@
 
         <variable
             name="adapter"
-            type="com.canbazdev.rickandmortyapp.adapters.characters.CharactersAdapter" />
+            type="com.canbazdev.rickandmortyapp.presentation.characters.CharactersAdapter" />
 
         <variable
             name="itemDecoration"
-            type="com.canbazdev.rickandmortyapp.adapters.characters.CharactersItemDecoration" />
+            type="com.canbazdev.rickandmortyapp.presentation.characters.CharactersItemDecoration" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".presentation.characters.CharactersFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:setAdapter="@{adapter}"
-            android:setItemDecoration="@{itemDecoration}"
+            android:setLayoutManager="@{viewmodel.currentLayoutManager}"
             android:submitList="@{viewmodel.characters}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
             tools:listitem="@layout/character_item" />
 
         <ProgressBar
@@ -39,5 +37,5 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
-    </FrameLayout>
+    </LinearLayout>
 </layout>

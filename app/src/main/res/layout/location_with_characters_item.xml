@@ -24,10 +24,10 @@
 
             <ImageView
                 android:id="@+id/ivLocationIcon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="18dp"
-
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:layout_margin="@dimen/dp_18"
+                android:contentDescription="@string/location_icon"
                 android:src="@drawable/placeholder"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

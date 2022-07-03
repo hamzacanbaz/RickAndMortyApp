@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.canbazdev.rickandmortyapp.R
-import com.canbazdev.rickandmortyapp.base.BaseFragment
+import com.canbazdev.rickandmortyapp.presentation.base.BaseFragment
 import com.canbazdev.rickandmortyapp.databinding.FragmentOnboardingFirstBinding
 import com.canbazdev.rickandmortyapp.util.Event
 import dagger.hilt.android.AndroidEntryPoint

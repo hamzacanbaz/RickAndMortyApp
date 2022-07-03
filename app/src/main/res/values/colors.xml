@@ -14,4 +14,5 @@
     <color name="onboarding_green">#A0D995</color>
     <color name="onboarding_orange">#ECB390</color>
     <color name="onboarding_pink">#FFC0D3</color>
+    <color name="color_bottom_navigation">#F4F4F4</color>
 </resources>

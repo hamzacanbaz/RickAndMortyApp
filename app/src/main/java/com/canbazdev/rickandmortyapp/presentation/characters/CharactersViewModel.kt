@@ -2,10 +2,11 @@ package com.canbazdev.rickandmortyapp.presentation.characters
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.canbazdev.rickandmortyapp.adapters.characters.CharactersAdapter
+import com.canbazdev.rickandmortyapp.data.repository.DataStoreRepository
 import com.canbazdev.rickandmortyapp.domain.model.Character
 import com.canbazdev.rickandmortyapp.domain.usecase.characters.GetCharactersUseCase
 import com.canbazdev.rickandmortyapp.util.Event
+import com.canbazdev.rickandmortyapp.util.LayoutManagers
 import com.canbazdev.rickandmortyapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -19,7 +20,8 @@ import javax.inject.Inject
 */
 @HiltViewModel
 class CharactersViewModel @Inject constructor(
-    private val getCharactersUseCase: GetCharactersUseCase
+    private val getCharactersUseCase: GetCharactersUseCase,
+    private val dataStoreRepository: DataStoreRepository
 ) : ViewModel(), CharactersAdapter.OnItemClickedListener {
 
     private val _characters = MutableStateFlow<List<Character>>(listOf())
@@ -43,8 +45,17 @@ class CharactersViewModel @Inject constructor(
     private val eventChannel = Channel<Event>(Channel.BUFFERED)
     val eventsFlow = eventChannel.receiveAsFlow()
 
+    // TODO data store'dan gelsin
+    private val _currentLayoutManager = MutableStateFlow(LayoutManagers.LINEAR_LAYOUT_MANAGER)
+    val currentLayoutManager: StateFlow<LayoutManagers> = _currentLayoutManager
+
 
     init {
+        viewModelScope.launch {
+            dataStoreRepository.getCharactersLayoutManager.collect {
+                _currentLayoutManager.value = LayoutManagers.values()[it]
+            }
+        }
         getCharacters()
         goToCharacterDetail()
     }
@@ -85,6 +96,12 @@ class CharactersViewModel @Inject constructor(
     override fun onItemClicked(position: Int, character: Character) {
         _characterDetailId.value = character.id ?: 0
         _goToCharacterDetail.value = true
-
     }
+
+    fun changeCurrentLayoutManager(layoutManagers: LayoutManagers) = viewModelScope.launch {
+        // TODO edit for data store
+        dataStoreRepository.setCharactersLayoutManager(layoutManagers)
+        _currentLayoutManager.value = layoutManagers
+    }
+
 }

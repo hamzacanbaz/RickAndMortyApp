@@ -1,4 +1,4 @@
-package com.canbazdev.rickandmortyapp.adapters.locations
+package com.canbazdev.rickandmortyapp.presentation.locations
 
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +36,7 @@ class NestedCharacterAdapter :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): NestedCharacterAdapter.NestedCharactersViewHolder {
+    ): NestedCharactersViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = NestedCharacterItemBinding.inflate(inflater, parent, false)
         return NestedCharactersViewHolder(binding)
@@ -52,7 +52,7 @@ class NestedCharacterAdapter :
     }
 
     override fun onBindViewHolder(
-        holder: NestedCharacterAdapter.NestedCharactersViewHolder,
+        holder: NestedCharactersViewHolder,
         position: Int
     ) {
         holder.bind(characterList[position])

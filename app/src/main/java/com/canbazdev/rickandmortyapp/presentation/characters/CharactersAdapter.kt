@@ -1,12 +1,15 @@
-package com.canbazdev.rickandmortyapp.adapters.characters
+package com.canbazdev.rickandmortyapp.presentation.characters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.canbazdev.rickandmortyapp.databinding.CharacterForLinearLayoutItemBinding
 import com.canbazdev.rickandmortyapp.databinding.CharacterItemBinding
 import com.canbazdev.rickandmortyapp.domain.model.Character
+import com.canbazdev.rickandmortyapp.util.LayoutManagers
 
 /*
 *   Created by hamzacanbaz on 20.06.2022
@@ -16,6 +19,7 @@ class CharactersAdapter(
 ) : RecyclerView.Adapter<CharactersAdapter.CharactersViewHolder>() {
 
     var characterList = ArrayList<Character>()
+    var selectedLayoutManager = LayoutManagers.GRID_LAYOUT_MANAGER
 
     @SuppressLint("NotifyDataSetChanged")
     fun setCharacterList(list: List<Character>) {
@@ -25,7 +29,7 @@ class CharactersAdapter(
 
     }
 
-    inner class CharactersViewHolder(private val binding: CharacterItemBinding) :
+    inner class CharactersViewHolder(private val binding: ViewDataBinding) :
         BaseViewHolder<Character>(binding.root), View.OnClickListener {
 
         init {
@@ -34,7 +38,14 @@ class CharactersAdapter(
 
 
         override fun bind(item: Character) {
-            binding.character = item
+            when (binding) {
+                is CharacterItemBinding -> {
+                    binding.character = item
+                }
+                is CharacterForLinearLayoutItemBinding -> {
+                    binding.character = item
+                }
+            }
 
         }
 
@@ -49,8 +60,22 @@ class CharactersAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = CharacterItemBinding.inflate(inflater, parent, false)
+        val binding: ViewDataBinding =
+            if (viewType == LayoutManagers.GRID_LAYOUT_MANAGER.ordinal) {
+                CharacterItemBinding.inflate(inflater, parent, false)
+            } else {
+                CharacterForLinearLayoutItemBinding.inflate(inflater, parent, false)
+
+            }
         return CharactersViewHolder(binding)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (selectedLayoutManager == LayoutManagers.GRID_LAYOUT_MANAGER) {
+            LayoutManagers.GRID_LAYOUT_MANAGER.ordinal
+        } else {
+            LayoutManagers.LINEAR_LAYOUT_MANAGER.ordinal
+        }
     }
 
 

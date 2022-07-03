@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="character"
+            type="com.canbazdev.rickandmortyapp.domain.model.Character" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivCharacter"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_120"
+            android:contentDescription="@string/character_image"
+            android:imageUrl="@{character.image}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ram2" />
+
+        <TextView
+            android:id="@+id/tvCharacterName"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:maxLines="1"
+            android:padding="@dimen/margin_2dp"
+            android:text="@{character.name}"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivCharacter"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCharacterStatus"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:background="@color/onboarding_green"
+            android:maxLines="1"
+            android:padding="@dimen/margin_2dp"
+            android:text="@{character.status}"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivCharacter"
+            app:layout_constraintTop_toBottomOf="@id/tvCharacterName" />
+
+        <TextView
+            android:id="@+id/tvCharacterGender"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:background="@color/onboarding_pink"
+            android:maxLines="1"
+            android:padding="@dimen/margin_2dp"
+            android:text="@{character.gender}"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivCharacter"
+            app:layout_constraintTop_toBottomOf="@id/tvCharacterStatus" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.canbazdev.rickandmortyapp.R
-import com.canbazdev.rickandmortyapp.adapters.OnboardingAdapter
-import com.canbazdev.rickandmortyapp.base.BaseFragment
+import com.canbazdev.rickandmortyapp.presentation.base.BaseFragment
 import com.canbazdev.rickandmortyapp.databinding.FragmentOnBoardingBinding
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import dagger.hilt.android.AndroidEntryPoint

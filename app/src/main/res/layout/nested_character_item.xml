@@ -15,10 +15,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/dp_12"
             android:background="@color/primary"
             android:text="@{character.name}"
-            tools:text="asdas" />
+            tools:text="@string/test" />
 
     </FrameLayout>
 </layout>
