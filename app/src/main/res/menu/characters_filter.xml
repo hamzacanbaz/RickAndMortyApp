@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/itemView"
+        android:icon="@drawable/ic_baseline_filter_list_24"
+        android:title="View"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/gridLayoutManager"
+                android:icon="@drawable/ic_baseline_grid_view_24"
+                android:title="Grid"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/linearLayoutManager"
+                android:icon="@drawable/ic_baseline_view_stream_24"
+                android:title="Linear"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
+
+</menu>
