@@ -10,7 +10,6 @@ import com.canbazdev.rickandmortyapp.util.Event
 import com.canbazdev.rickandmortyapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -70,7 +69,6 @@ class LocationsViewModel @Inject constructor(
     }
 
     private fun openTheLocationDetails() = viewModelScope.launch {
-        delay(1000)
         openTheLocationDetails.collect {
             if (it) {
                 _openTheLocationDetails.value = false

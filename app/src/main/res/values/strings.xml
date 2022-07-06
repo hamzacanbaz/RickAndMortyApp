@@ -18,4 +18,15 @@
     <string name="splash_image">splash image</string>
     <string name="location_icon">location icon</string>
     <string name="test">Test</string>
+    <array name="status">
+        <item>"Alive"</item>
+        <item>"Dead"</item>
+        <item>"Unknown"</item>
+    </array>
+    <array name="gender">
+        <item>"Female"</item>
+        <item>"Male"</item>
+        <item>"Genderless"</item>
+        <item>"Unknown"</item>
+    </array>
 </resources>

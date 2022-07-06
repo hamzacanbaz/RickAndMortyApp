@@ -6,3 +6,11 @@ package com.canbazdev.rickandmortyapp.util
 enum class LayoutManagers {
     LINEAR_LAYOUT_MANAGER, GRID_LAYOUT_MANAGER
 }
+
+enum class Status {
+    ALIVE, DEAD, UNKNOWN
+}
+
+enum class Gender {
+    FEMALE, MALE, GENDERLESS, UNKNOWN
+}

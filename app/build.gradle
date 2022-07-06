@@ -121,6 +121,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.google.code.gson:gson:$gson_version"
 
+    // Power Spinner
+    implementation "com.github.skydoves:powerspinner:1.2.3"
+
 
 
 

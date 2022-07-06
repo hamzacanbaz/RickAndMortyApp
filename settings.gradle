@@ -12,6 +12,8 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url("https://repo.gradle.org/gradle/libs-releases/") }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+
     }
 
 }

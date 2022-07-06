@@ -5,6 +5,8 @@ import com.canbazdev.rickandmortyapp.data.remote.model.characters.CharacterDetai
 import com.canbazdev.rickandmortyapp.data.remote.model.characters.CharactersResponse
 import com.canbazdev.rickandmortyapp.data.remote.model.locations.LocationsResponse
 import com.canbazdev.rickandmortyapp.domain.repository.RickAndMortyRepository
+import com.canbazdev.rickandmortyapp.util.Gender
+import com.canbazdev.rickandmortyapp.util.Status
 import javax.inject.Inject
 
 /*
@@ -14,6 +16,9 @@ class RickAndMortyRepositoryImpl @Inject constructor(
     private val rickAndMortyService: RickAndMortyService
 ) : RickAndMortyRepository {
     override suspend fun getCharacters(): CharactersResponse = rickAndMortyService.getCharacters()
+    override suspend fun getFilterCharacters(filter:Map<String, String>): CharactersResponse =
+        rickAndMortyService.getFilterCharacters(filter)
+
     override suspend fun getCharacterDetailById(characterId: String): CharacterDetail =
         rickAndMortyService.getCharacterDetailById(characterId)
 

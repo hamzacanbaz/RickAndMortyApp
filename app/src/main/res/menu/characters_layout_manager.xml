@@ -19,6 +19,13 @@
                 app:showAsAction="never" />
         </menu>
     </item>
+    <item
+        android:id="@+id/itemView2"
+        android:icon="@drawable/ic_baseline_filter_list_24"
+        android:title="Filter"
+        app:showAsAction="ifRoom">
+
+    </item>
 
 
 </menu>

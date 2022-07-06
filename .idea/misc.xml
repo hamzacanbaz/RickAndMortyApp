@@ -4,14 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1495" />
+        <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/bg_rounded_no_color.xml" value="0.1865" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/cardview_bg.xml" value="0.225" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/gradient_bg.xml" value="0.1275" />
+        <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/ic_baseline_done_24.xml" value="0.1865" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1495" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/location_bg.xml" value="0.1" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/navigation_item_selected.xml" value="0.132" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/activity_main.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/character_for_linear_layout_item.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/character_item.xml" value="0.25" />
+        <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/dialog_filter.xml" value="0.128" />
+        <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/filter_dialog.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/fragment_character_detail.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/fragment_characters.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/fragment_episodes.xml" value="0.22239583333333332" />

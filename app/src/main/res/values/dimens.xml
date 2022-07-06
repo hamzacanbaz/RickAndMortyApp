@@ -23,5 +23,6 @@
     <dimen name="sp_16">16sp</dimen>
     <dimen name="dp_256">256dp</dimen>
     <dimen name="dp_18">18dp</dimen>
+    <dimen name="dp_64">64dp</dimen>
 
 </resources>

@@ -9,6 +9,10 @@ import com.canbazdev.rickandmortyapp.data.remote.model.locations.LocationsRespon
 */
 interface RickAndMortyRepository {
     suspend fun getCharacters(): CharactersResponse
+    suspend fun getFilterCharacters(
+        filter: Map<String, String>
+    ): CharactersResponse
+
     suspend fun getCharacterDetailById(characterId: String): CharacterDetail
     suspend fun getLocations(): LocationsResponse
 }
