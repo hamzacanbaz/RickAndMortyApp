@@ -1,16 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.episodes.EpisodesFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.canbazdev.rickandmortyapp.presentation.episodes.EpisodesViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.canbazdev.rickandmortyapp.presentation.episodes.EpisodesAdapter" />
+
+        <variable
+            name="itemDecoration"
+            type="com.canbazdev.rickandmortyapp.presentation.locations.LocationItemDecoration" />
+
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/coming_soon"
-        android:textSize="@dimen/sp20"
-        android:textStyle="bold" />
+        tools:context=".presentation.episodes.EpisodesFragment">
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
+            android:nestedScrollingEnabled="false"
+            android:setAdapter="@{adapter}"
+            android:setItemDecoration="@{itemDecoration}"
+            android:submitEpisodesList="@{viewmodel.episodes}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/episode_item" />
+
+        <ProgressBar
+            android:id="@+id/pb_characters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
+</layout>

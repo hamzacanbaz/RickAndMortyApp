@@ -9,7 +9,6 @@ import com.canbazdev.rickandmortyapp.domain.usecase.characters.GetFilterCharacte
 import com.canbazdev.rickandmortyapp.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -155,7 +154,6 @@ class CharactersViewModel @Inject constructor(
 
     // Gotodetail ile parametre gönderiliyor, burası initten aşağıdaki onclick ile mergele
     private fun goToCharacterDetail() = viewModelScope.launch {
-        delay(1000)
         goToCharacterDetail.collect {
             if (it) {
                 _goToCharacterDetail.value = false

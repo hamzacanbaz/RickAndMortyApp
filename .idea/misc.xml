@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable-v24/black_bg_character.xml" value="0.1915" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1495" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/bg_rounded_no_color.xml" value="0.1865" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/drawable/cardview_bg.xml" value="0.225" />
@@ -15,6 +16,7 @@
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/character_for_linear_layout_item.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/character_item.xml" value="0.25" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/dialog_filter.xml" value="0.128" />
+        <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/episode_item.xml" value="0.2" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/filter_dialog.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/fragment_character_detail.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/fragment_characters.xml" value="0.23645833333333333" />
@@ -27,7 +29,7 @@
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/fragment_onboarding_second.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/fragment_onboarding_third.xml" value="0.25" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/fragment_splash.xml" value="0.23645833333333333" />
-        <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/location_item.xml" value="0.264" />
+        <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/location_item.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/location_with_characters_item.xml" value="0.11145833333333334" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/nested_character_item.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/hmz/AndroidStudioProjects/RickAndMortyApp/app/src/main/res/layout/test_item.xml" value="0.23541666666666666" />

@@ -2,6 +2,7 @@ package com.canbazdev.rickandmortyapp.domain.repository
 
 import com.canbazdev.rickandmortyapp.data.remote.model.characters.CharacterDetail
 import com.canbazdev.rickandmortyapp.data.remote.model.characters.CharactersResponse
+import com.canbazdev.rickandmortyapp.data.remote.model.episodes.EpisodesResponse
 import com.canbazdev.rickandmortyapp.data.remote.model.locations.LocationsResponse
 
 /*
@@ -15,4 +16,5 @@ interface RickAndMortyRepository {
 
     suspend fun getCharacterDetailById(characterId: String): CharacterDetail
     suspend fun getLocations(): LocationsResponse
+    suspend fun getEpisodes(): EpisodesResponse
 }

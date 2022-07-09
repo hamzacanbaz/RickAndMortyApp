@@ -2,6 +2,7 @@ package com.canbazdev.rickandmortyapp.data.remote.api
 
 import com.canbazdev.rickandmortyapp.data.remote.model.characters.CharacterDetail
 import com.canbazdev.rickandmortyapp.data.remote.model.characters.CharactersResponse
+import com.canbazdev.rickandmortyapp.data.remote.model.episodes.EpisodesResponse
 import com.canbazdev.rickandmortyapp.data.remote.model.locations.LocationsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -24,4 +25,7 @@ interface RickAndMortyService {
 
     @GET("location")
     suspend fun getLocations(): LocationsResponse
+
+    @GET("episode")
+    suspend fun getEpisodes(): EpisodesResponse
 }

@@ -10,12 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.canbazdev.rickandmortyapp.R
+import com.canbazdev.rickandmortyapp.domain.model.Character
+import com.canbazdev.rickandmortyapp.domain.model.Episode
+import com.canbazdev.rickandmortyapp.domain.model.Location
 import com.canbazdev.rickandmortyapp.presentation.characters.CharactersAdapter
 import com.canbazdev.rickandmortyapp.presentation.characters.CharactersItemDecoration
 import com.canbazdev.rickandmortyapp.presentation.characters.CharactersItemForLinearLayoutDecoration
+import com.canbazdev.rickandmortyapp.presentation.episodes.EpisodesAdapter
 import com.canbazdev.rickandmortyapp.presentation.locations.LocationsAdapter
-import com.canbazdev.rickandmortyapp.domain.model.Character
-import com.canbazdev.rickandmortyapp.domain.model.Location
 
 /*
 *   Created by hamzacanbaz on 19.06.2022
@@ -59,6 +61,13 @@ fun submitList(recyclerView: RecyclerView, list: List<Character>?) {
 fun submitLocationsList(recyclerView: RecyclerView, list: List<Location>?) {
     val adapter = recyclerView.adapter as LocationsAdapter?
     adapter?.setLocationsList(list ?: listOf())
+    adapter?.notifyDataSetChanged()
+}
+
+@BindingAdapter("android:submitEpisodesList")
+fun submitEpisodesList(recyclerView: RecyclerView, list: List<Episode>?) {
+    val adapter = recyclerView.adapter as EpisodesAdapter?
+    adapter?.setEpisodesList(list ?: listOf())
     adapter?.notifyDataSetChanged()
 }
 
