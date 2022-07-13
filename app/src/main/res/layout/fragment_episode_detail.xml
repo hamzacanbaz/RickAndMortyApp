@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="adapter"
+            type="com.canbazdev.rickandmortyapp.presentation.characters.CharactersAdapter" />
+
+        <variable
+            name="viewModel"
+            type="com.canbazdev.rickandmortyapp.presentation.episode_detail.EpisodeDetailViewModel" />
+
+        <variable
+            name="itemDecoration"
+            type="com.canbazdev.rickandmortyapp.presentation.episode_detail.EpisodeCharactersItemDecoration" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:setAlpha="@{viewModel.isLoading}">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_0.4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.4" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_0.6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.6" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_0.65"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.65" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_0.1"
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_0.05"
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_0.95"
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95" />
+
+            <ImageView
+                android:id="@+id/ivEpisodeImage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0"
+                android:contentDescription="@string/episode_image"
+                android:padding="@dimen/dp_12"
+                android:src="@drawable/ram_episode"
+                app:layout_constraintBottom_toTopOf="@+id/guideline_0.4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+
+                android:id="@+id/tvEpisodeNameInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/episode_name"
+                android:textColor="@color/primary_dark"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tvEpisodeStatusInfo"
+                app:layout_constraintStart_toStartOf="@id/guideline_0.1"
+                app:layout_constraintTop_toBottomOf="@id/guideline_0.4"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
+
+            <TextView
+                android:id="@+id/tvEpisodeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginBottom="@dimen/margin_8dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@{viewModel.episode.name}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvEpisodeNameInfo"
+                app:layout_constraintStart_toEndOf="@id/tvEpisodeNameInfo"
+                tools:text="Rick Sanchez" />
+
+            <TextView
+                android:id="@+id/tvEpisodeStatusInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/episode_number"
+                android:textColor="@color/primary_dark"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tvEpisodeSpeciesInfo"
+                app:layout_constraintStart_toStartOf="@id/guideline_0.1"
+                app:layout_constraintTop_toBottomOf="@id/tvEpisodeNameInfo" />
+
+            <TextView
+                android:id="@+id/tvEpisodeStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginBottom="@dimen/margin_8dp"
+                android:gravity="center"
+                android:text="@{viewModel.episode.episode}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvEpisodeStatusInfo"
+                app:layout_constraintStart_toEndOf="@id/tvEpisodeStatusInfo" />
+
+            <TextView
+                android:id="@+id/tvEpisodeSpeciesInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/episode_date"
+                android:textColor="@color/primary_dark"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/guideline_0.6"
+                app:layout_constraintStart_toStartOf="@id/guideline_0.1"
+                app:layout_constraintTop_toBottomOf="@id/tvEpisodeStatusInfo" />
+
+            <TextView
+                android:id="@+id/tvEpisodeSpecies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginBottom="@dimen/margin_8dp"
+                android:gravity="center"
+                android:text="@{viewModel.episode.airDate}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvEpisodeSpeciesInfo"
+                app:layout_constraintStart_toEndOf="@id/tvEpisodeSpeciesInfo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:text="@string/characters_lower"
+                android:textColor="@color/primary_dark"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/rvCharacters"
+                app:layout_constraintEnd_toStartOf="@id/guideline_0.95"
+                app:layout_constraintStart_toEndOf="@id/guideline_0.05" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCharacters"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:setAdapter="@{adapter}"
+                android:setItemDecoration="@{itemDecoration}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline_0.95"
+                app:layout_constraintStart_toEndOf="@id/guideline_0.05"
+                app:layout_constraintTop_toBottomOf="@id/guideline_0.65"
+                tools:listitem="@layout/character_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+</layout>

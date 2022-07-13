@@ -50,11 +50,24 @@
         android:id="@+id/episodesFragment"
         android:name="com.canbazdev.rickandmortyapp.presentation.episodes.EpisodesFragment"
         android:label="Episodes"
-        tools:layout="@layout/fragment_episodes" />
+        tools:layout="@layout/fragment_episodes">
+        <action
+            android:id="@+id/action_episodesFragment_to_episodeDetailFragment"
+            app:destination="@id/episodeDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
         android:name="com.canbazdev.rickandmortyapp.presentation.detail_character.CharacterDetailFragment"
-        android:label="Character Detail">
+        android:label="Character Detail"
+        tools:layout="@layout/fragment_character_detail">
 
     </fragment>
+    <fragment
+        android:id="@+id/episodeDetailFragment"
+        android:name="com.canbazdev.rickandmortyapp.presentation.episode_detail.EpisodeDetailFragment"
+        android:label="Episode Detail"
+        tools:layout="@layout/fragment_episode_detail" />
+    <action
+        android:id="@+id/action_global_characterDetailFragment"
+        app:destination="@id/characterDetailFragment" />
 </navigation>

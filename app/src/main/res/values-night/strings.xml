@@ -16,4 +16,13 @@
     <string name="splash_image">splash image</string>
     <string name="location_icon">location icon</string>
     <string name="test">Test</string>
+    <string name="filters">Filters</string>
+    <string name="name">Name</string>
+    <string name="status">Status</string>
+    <string name="gender">Gender</string>
+    <string name="filter">Filter</string>
+    <string name="episodes_lower">Episodes</string>
+    <string name="view">View</string>
+    <string name="grid">Grid</string>
+    <string name="linear">Linear</string>
 </resources>

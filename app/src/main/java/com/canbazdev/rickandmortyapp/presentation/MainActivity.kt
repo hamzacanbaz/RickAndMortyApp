@@ -1,7 +1,6 @@
 package com.canbazdev.rickandmortyapp.presentation
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -10,7 +9,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.canbazdev.rickandmortyapp.R
 import com.canbazdev.rickandmortyapp.R.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -70,7 +68,6 @@ class MainActivity : AppCompatActivity() {
         )
         toolbar.setupWithNavController(navController, appBarConfiguration)
     }
-
 
 
 }

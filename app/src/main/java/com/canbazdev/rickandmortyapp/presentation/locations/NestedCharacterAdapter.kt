@@ -13,7 +13,7 @@ import com.canbazdev.rickandmortyapp.domain.model.Character
 class NestedCharacterAdapter :
     RecyclerView.Adapter<NestedCharacterAdapter.NestedCharactersViewHolder>() {
 
-    var characterList = ArrayList<Character>()
+    private var characterList = ArrayList<Character>()
 
     fun setCharacterList(list: List<Character>) {
         characterList.clear()

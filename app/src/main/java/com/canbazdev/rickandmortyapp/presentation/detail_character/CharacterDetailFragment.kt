@@ -21,7 +21,6 @@ class CharacterDetailFragment :
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         observe()
-        //println(arguments?.getString("id"))
 
     }
 

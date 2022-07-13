@@ -1,6 +1,6 @@
 package com.canbazdev.rickandmortyapp.domain.usecase.character_detail
 
-import com.canbazdev.rickandmortyapp.data.remote.model.characters.toCharacter
+import com.canbazdev.rickandmortyapp.data.model.characters.toCharacter
 import com.canbazdev.rickandmortyapp.domain.model.Character
 import com.canbazdev.rickandmortyapp.domain.repository.RickAndMortyRepository
 import com.canbazdev.rickandmortyapp.util.Resource

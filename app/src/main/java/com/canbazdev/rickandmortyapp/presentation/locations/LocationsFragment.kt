@@ -2,15 +2,15 @@ package com.canbazdev.rickandmortyapp.presentation.locations
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.canbazdev.rickandmortyapp.R
-import com.canbazdev.rickandmortyapp.presentation.base.BaseFragment
 import com.canbazdev.rickandmortyapp.databinding.FragmentLocationsBinding
+import com.canbazdev.rickandmortyapp.presentation.base.BaseFragment
 import com.canbazdev.rickandmortyapp.util.Event
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class LocationsFragment : BaseFragment<FragmentLocationsBinding>(R.layout.fragment_locations) {
@@ -20,15 +20,22 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>(R.layout.fragme
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observe()
         binding.viewmodel = viewModel
         locationsAdapter = LocationsAdapter(viewModel)
         binding.adapter = locationsAdapter
         binding.itemDecoration = LocationItemDecoration()
+        observe()
 
     }
 
     private fun observe() {
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.locations.collectLatest {
+                locationsAdapter.submitData(it)
+            }
+        }
+
 
         lifecycleScope.launchWhenStarted {
             viewModel.eventsFlow.collect { event ->
@@ -49,10 +56,6 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>(R.layout.fragme
             viewModel.uiState.collect {
                 if (it != 0) {
                     binding.pbCharacters.visibility = View.GONE
-                }
-
-                if (it == 1) {
-                    println(viewModel.locations.value.size)
                 }
             }
         }

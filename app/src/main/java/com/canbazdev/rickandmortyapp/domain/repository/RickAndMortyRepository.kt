@@ -1,20 +1,26 @@
 package com.canbazdev.rickandmortyapp.domain.repository
 
-import com.canbazdev.rickandmortyapp.data.remote.model.characters.CharacterDetail
-import com.canbazdev.rickandmortyapp.data.remote.model.characters.CharactersResponse
-import com.canbazdev.rickandmortyapp.data.remote.model.episodes.EpisodesResponse
-import com.canbazdev.rickandmortyapp.data.remote.model.locations.LocationsResponse
+import androidx.paging.PagingData
+import com.canbazdev.rickandmortyapp.data.model.characters.CharacterDetail
+import com.canbazdev.rickandmortyapp.data.model.episodes.Episode
+import com.canbazdev.rickandmortyapp.data.model.episodes.EpisodesResponse
+import com.canbazdev.rickandmortyapp.data.model.locations.Location
+import com.canbazdev.rickandmortyapp.data.model.locations.LocationsResponse
+import kotlinx.coroutines.flow.Flow
 
 /*
 *   Created by hamzacanbaz on 20.06.2022
 */
 interface RickAndMortyRepository {
-    suspend fun getCharacters(): CharactersResponse
+    suspend fun getCharacters(): Flow<PagingData<CharacterDetail>>
+    suspend fun getMultipleCharacters(idList: String): ArrayList<CharacterDetail>
+    suspend fun getMultipleLocations(idList: String): ArrayList<Location>
     suspend fun getFilterCharacters(
         filter: Map<String, String>
-    ): CharactersResponse
+    ): Flow<PagingData<CharacterDetail>>
 
     suspend fun getCharacterDetailById(characterId: String): CharacterDetail
-    suspend fun getLocations(): LocationsResponse
-    suspend fun getEpisodes(): EpisodesResponse
+    suspend fun getLocations(): Flow<PagingData<Location>>
+    suspend fun getLocationIdList(): LocationsResponse
+    suspend fun getEpisodes(): Flow<PagingData<Episode>>
 }

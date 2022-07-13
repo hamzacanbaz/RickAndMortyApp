@@ -7,9 +7,15 @@
 
         <import type="android.view.View" />
 
+        <import type="java.util.List" />
+
         <variable
             name="location"
             type="com.canbazdev.rickandmortyapp.domain.model.Location" />
+
+        <variable
+            name="chrList"
+            type="List&lt;com.canbazdev.rickandmortyapp.domain.model.Character>" />
     </data>
 
     <LinearLayout
@@ -66,6 +72,7 @@
                 android:descendantFocusability="blocksDescendants"
                 android:focusable="false"
                 android:nestedScrollingEnabled="false"
+                android:submitNestedList="@{chrList}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </FrameLayout>
 

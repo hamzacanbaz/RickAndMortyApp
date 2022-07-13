@@ -1,4 +1,4 @@
-package com.canbazdev.rickandmortyapp.data.remote.model.episodes
+package com.canbazdev.rickandmortyapp.data.model.episodes
 
 
 import com.canbazdev.rickandmortyapp.domain.model.Episode
@@ -21,6 +21,6 @@ data class Episode(
     val url: String
 )
 
-fun com.canbazdev.rickandmortyapp.data.remote.model.episodes.Episode.toEpisode(): Episode {
+fun com.canbazdev.rickandmortyapp.data.model.episodes.Episode.toEpisode(): Episode {
     return Episode(airDate, characters, created, episode, id, name)
 }

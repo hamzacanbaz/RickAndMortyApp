@@ -3,7 +3,7 @@ package com.canbazdev.rickandmortyapp.presentation.onboarding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.canbazdev.rickandmortyapp.R
-import com.canbazdev.rickandmortyapp.data.model.OnBoardingModel
+import com.canbazdev.rickandmortyapp.data.model.onboarding.OnBoardingModel
 import com.canbazdev.rickandmortyapp.data.repository.DataStoreRepository
 import com.canbazdev.rickandmortyapp.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel

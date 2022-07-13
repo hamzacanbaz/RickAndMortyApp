@@ -7,7 +7,9 @@ import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.canbazdev.rickandmortyapp.R
 import com.canbazdev.rickandmortyapp.databinding.DialogFilterBinding
@@ -19,6 +21,8 @@ import com.canbazdev.rickandmortyapp.util.LayoutManagers
 import com.canbazdev.rickandmortyapp.util.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -36,11 +40,12 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>(R.layout.frag
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observe()
         charactersAdapter = CharactersAdapter(viewModel)
         binding.viewmodel = viewModel
         binding.adapter = charactersAdapter
         binding.itemDecoration = CharactersItemDecoration()
+        observe()
+
 
 
     }
@@ -56,7 +61,7 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>(R.layout.frag
                         bundle.putString("characterId", event.characterId.toString())
 
                         findNavController().navigate(
-                            R.id.action_charactersFragment_to_characterDetailFragment, bundle
+                            R.id.action_global_characterDetailFragment, bundle
                         )
                     }
 
@@ -70,6 +75,14 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>(R.layout.frag
                     binding.pbCharacters.visibility = View.GONE
                 }
             }
+        }
+
+        lifecycleScope.launchWhenStarted {
+                viewModel.characters.collectLatest {
+                    charactersAdapter.submitData(it)
+                }
+
+
         }
     }
 
@@ -110,11 +123,11 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>(R.layout.frag
 
     private fun setFilterDialogListeners(alertDialog: ViewDataBinding, builder: AlertDialog) {
         (alertDialog as DialogFilterBinding).powerSpinnerViewStatus
-            .setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newText ->
+            .setOnSpinnerItemSelectedListener<String> { _, _, newIndex, _ ->
                 viewModel.updateFilterStatus(Status.values()[newIndex])
             }
         alertDialog.powerSpinnerViewGender
-            .setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newText ->
+            .setOnSpinnerItemSelectedListener<String> { _, _, newIndex, _ ->
                 viewModel.updateFilterGender(Gender.values()[newIndex])
             }
 
@@ -127,5 +140,6 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>(R.layout.frag
             builder.cancel()
         }
     }
+
 
 }

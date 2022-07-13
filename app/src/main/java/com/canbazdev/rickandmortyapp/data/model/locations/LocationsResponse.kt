@@ -1,4 +1,4 @@
-package com.canbazdev.rickandmortyapp.data.remote.model.locations
+package com.canbazdev.rickandmortyapp.data.model.locations
 
 
 import com.google.gson.annotations.SerializedName

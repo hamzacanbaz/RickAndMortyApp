@@ -18,6 +18,7 @@ import com.canbazdev.rickandmortyapp.presentation.characters.CharactersItemDecor
 import com.canbazdev.rickandmortyapp.presentation.characters.CharactersItemForLinearLayoutDecoration
 import com.canbazdev.rickandmortyapp.presentation.episodes.EpisodesAdapter
 import com.canbazdev.rickandmortyapp.presentation.locations.LocationsAdapter
+import com.canbazdev.rickandmortyapp.presentation.locations.NestedCharacterAdapter
 
 /*
 *   Created by hamzacanbaz on 19.06.2022
@@ -55,6 +56,14 @@ fun <T> setItemDecoration(recyclerView: RecyclerView, decoration: T?) {
 fun submitList(recyclerView: RecyclerView, list: List<Character>?) {
     val adapter = recyclerView.adapter as CharactersAdapter?
     adapter?.setCharacterList(list ?: listOf())
+    adapter?.notifyDataSetChanged()
+}
+
+@BindingAdapter("android:submitNestedList")
+fun submitNestedList(recyclerView: RecyclerView, list: List<Character>?) {
+    val adapter = recyclerView.adapter as NestedCharacterAdapter?
+    adapter?.setCharacterList(list ?: listOf())
+    adapter?.notifyDataSetChanged()
 }
 
 @BindingAdapter("android:submitLocationsList")
@@ -85,8 +94,8 @@ fun setLayoutManager(recyclerView: RecyclerView, layoutManager: LayoutManagers) 
     if (layoutManager == LayoutManagers.GRID_LAYOUT_MANAGER) {
         recyclerView.apply {
             this.layoutManager = GridLayoutManager(recyclerView.context, 2)
-            (this.adapter as CharactersAdapter).selectedLayoutManager =
-                LayoutManagers.GRID_LAYOUT_MANAGER
+            (this.adapter as CharactersAdapter).changeLayoutManager(LayoutManagers.GRID_LAYOUT_MANAGER)
+
             while (recyclerView.itemDecorationCount > 0) {
                 recyclerView.removeItemDecorationAt(0)
             }
@@ -95,8 +104,8 @@ fun setLayoutManager(recyclerView: RecyclerView, layoutManager: LayoutManagers) 
     } else {
         recyclerView.apply {
             this.layoutManager = LinearLayoutManager(recyclerView.context)
-            (this.adapter as CharactersAdapter).selectedLayoutManager =
-                LayoutManagers.LINEAR_LAYOUT_MANAGER
+            (this.adapter as CharactersAdapter).changeLayoutManager(LayoutManagers.LINEAR_LAYOUT_MANAGER)
+
             while (recyclerView.itemDecorationCount > 0) {
                 recyclerView.removeItemDecorationAt(0)
             }

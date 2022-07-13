@@ -1,4 +1,4 @@
-package com.canbazdev.rickandmortyapp.data.remote.model.locations
+package com.canbazdev.rickandmortyapp.data.model.locations
 
 
 import com.canbazdev.rickandmortyapp.domain.model.Location
@@ -22,7 +22,7 @@ data class Location(
     val url: String
 )
 
-fun com.canbazdev.rickandmortyapp.data.remote.model.locations.Location.toLocation(): Location {
+fun com.canbazdev.rickandmortyapp.data.model.locations.Location.toLocation(): Location {
     return Location(
         id, name, type, residents
     )

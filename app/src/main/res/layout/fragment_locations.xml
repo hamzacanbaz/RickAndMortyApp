@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="java.util.List"/>
         <variable
             name="viewmodel"
             type="com.canbazdev.rickandmortyapp.presentation.locations.LocationsViewModel" />
@@ -16,6 +16,9 @@
         <variable
             name="itemDecoration"
             type="com.canbazdev.rickandmortyapp.presentation.locations.LocationItemDecoration" />
+        <variable
+            name="locationsForAdapter"
+            type="List&lt;com.canbazdev.rickandmortyapp.domain.model.LocationForAdapter>" />
 
     </data>
 
@@ -32,7 +35,6 @@
             android:nestedScrollingEnabled="false"
             android:setAdapter="@{adapter}"
             android:setItemDecoration="@{itemDecoration}"
-            android:submitLocationsList="@{viewmodel.locations}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/location_item" />
 

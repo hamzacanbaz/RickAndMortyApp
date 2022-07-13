@@ -11,13 +11,28 @@
     <string name="onboarding_image">onboarding_image</string>
     <string name="next">Next</string>
     <string name="characters">CHARACTERS</string>
+    <string name="characters_lower">Characters</string>
     <string name="you_can_find_all_characters">You can find all characters</string>
     <string name="locations">LOCATIONS</string>
+    <string name="locations_lower">Locations</string>
     <string name="you_can_find_all_locations">You can find all locations</string>
     <string name="done">Done</string>
     <string name="splash_image">splash image</string>
     <string name="location_icon">location icon</string>
     <string name="test">Test</string>
+    <string name="episode_image">Episode image</string>
+    <string name="episode_name">Episode name:</string>
+    <string name="episode_number">Episode number:</string>
+    <string name="episode_date">Episode date:</string>
+    <string name="filters">Filters</string>
+    <string name="name">Name</string>
+    <string name="status">Status</string>
+    <string name="gender">Gender</string>
+    <string name="filter">Filter</string>
+    <string name="episodes_lower">Episodes</string>
+    <string name="view">View</string>
+    <string name="grid">Grid</string>
+    <string name="linear">Linear</string>
     <array name="status">
         <item>"Alive"</item>
         <item>"Dead"</item>

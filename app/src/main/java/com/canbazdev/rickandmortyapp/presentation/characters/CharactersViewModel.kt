@@ -2,8 +2,10 @@ package com.canbazdev.rickandmortyapp.presentation.characters
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import com.canbazdev.rickandmortyapp.data.repository.DataStoreRepository
 import com.canbazdev.rickandmortyapp.domain.model.Character
+import com.canbazdev.rickandmortyapp.domain.repository.RickAndMortyRepository
 import com.canbazdev.rickandmortyapp.domain.usecase.characters.GetCharactersUseCase
 import com.canbazdev.rickandmortyapp.domain.usecase.characters.GetFilterCharactersUseCase
 import com.canbazdev.rickandmortyapp.util.*
@@ -20,14 +22,12 @@ import javax.inject.Inject
 class CharactersViewModel @Inject constructor(
     private val getCharactersUseCase: GetCharactersUseCase,
     private val getFilterCharactersUseCase: GetFilterCharactersUseCase,
-    private val dataStoreRepository: DataStoreRepository
+    private val dataStoreRepository: DataStoreRepository,
+    private val rickAndMortyRepository: RickAndMortyRepository
 ) : ViewModel(), CharactersAdapter.OnItemClickedListener {
 
-    private val _characters = MutableStateFlow<List<Character>>(listOf())
-    val characters: StateFlow<List<Character>> = _characters
-
-    private val _filterCharacters = MutableStateFlow<List<Character>>(listOf())
-    val filterCharacters: StateFlow<List<Character>> = _filterCharacters
+    private val _characters = MutableStateFlow<PagingData<Character>>(PagingData.empty())
+    val characters: StateFlow<PagingData<Character>> = _characters
 
     private val _error = MutableStateFlow("")
     val error: StateFlow<String> = _error
@@ -47,7 +47,6 @@ class CharactersViewModel @Inject constructor(
     private val eventChannel = Channel<Event>(Channel.BUFFERED)
     val eventsFlow = eventChannel.receiveAsFlow()
 
-    // TODO data store'dan gelsin
     private val _currentLayoutManager = MutableStateFlow(LayoutManagers.LINEAR_LAYOUT_MANAGER)
     val currentLayoutManager: StateFlow<LayoutManagers> = _currentLayoutManager
 
@@ -70,44 +69,52 @@ class CharactersViewModel @Inject constructor(
                 _currentLayoutManager.value = LayoutManagers.values()[it]
             }
         }
+
         getCharacters()
         goToCharacterDetail()
     }
 
     fun updateFilterStatus(status: Status) {
-        println(status)
         _filterStatus.value = status
     }
 
     fun updateFilterGender(gender: Gender) {
-        println(gender)
         _filterGender.value = gender
     }
 
     fun updateName(name: String) {
-        println(name)
         _filterName.value = name.trim()
     }
 
     private fun getCharacters() {
-        getCharactersUseCase().onEach { result ->
-            when (result) {
-                is Resource.Success -> {
-                    result.data?.let { list ->
-                        _characters.value = list
-                        _uiState.value = 1
+//        rickAndMortyRepository.getCharacters().collect {
+//            _characters.value = it.map { d->
+//                println(d.toCharacter())
+//                d.toCharacter()
+//            }
+//
+//        }
+        viewModelScope.launch {
+            getCharactersUseCase.invoke(coroutineScope = viewModelScope).collect { result ->
+                when (result) {
+                    is Resource.Success -> {
+                        result.data?.let { list ->
+                            _characters.value = list
+                            _uiState.value = 1
+                        }
+                    }
+                    is Resource.Error -> {
+                        _error.value = result.errorMessage ?: "Unexpected error!"
+                        _uiState.value = -1
+                    }
+                    is Resource.Loading -> {
+                        _isLoading.value = true
+                        _uiState.value = 0
                     }
                 }
-                is Resource.Error -> {
-                    _error.value = result.errorMessage ?: "Unexpected error!"
-                    _uiState.value = -1
-                }
-                is Resource.Loading -> {
-                    _isLoading.value = true
-                    _uiState.value = 0
-                }
             }
-        }.launchIn(viewModelScope)
+
+        }
     }
 
     private fun setFilterMap() {
@@ -129,7 +136,8 @@ class CharactersViewModel @Inject constructor(
         setFilterMap()
         filterMap.value?.let {
             getFilterCharactersUseCase(
-                it
+                it,
+                viewModelScope
             ).onEach { result ->
                 when (result) {
                     is Resource.Success -> {
@@ -152,7 +160,6 @@ class CharactersViewModel @Inject constructor(
 
     }
 
-    // Gotodetail ile parametre gönderiliyor, burası initten aşağıdaki onclick ile mergele
     private fun goToCharacterDetail() = viewModelScope.launch {
         goToCharacterDetail.collect {
             if (it) {

@@ -1,19 +1,18 @@
 package com.canbazdev.rickandmortyapp.presentation.episodes
 
 import android.os.Bundle
-import android.view.*
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.canbazdev.rickandmortyapp.R
 import com.canbazdev.rickandmortyapp.databinding.FragmentEpisodesBinding
 import com.canbazdev.rickandmortyapp.presentation.base.BaseFragment
-import com.canbazdev.rickandmortyapp.presentation.characters.CharactersAdapter
-import com.canbazdev.rickandmortyapp.presentation.characters.CharactersItemDecoration
 import com.canbazdev.rickandmortyapp.presentation.locations.LocationItemDecoration
 import com.canbazdev.rickandmortyapp.util.Event
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>(R.layout.fragment_episodes) {
@@ -25,11 +24,11 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>(R.layout.fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observe()
         episodesAdapter = EpisodesAdapter(viewModel)
         binding.viewmodel = viewModel
         binding.adapter = episodesAdapter
         binding.itemDecoration = LocationItemDecoration()
+        observe()
 
 
     }
@@ -37,15 +36,24 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>(R.layout.fragment
     private fun observe() {
 
         lifecycleScope.launchWhenStarted {
+            viewModel.episodes.collectLatest {
+                episodesAdapter.submitData(it)
+            }
+
+
+        }
+
+
+        lifecycleScope.launchWhenStarted {
             viewModel.eventsFlow.collect { event ->
                 when (event) {
-                    is Event.NavigateToDetail -> {
+                    is Event.NavigateToEpisodeDetail -> {
 
                         val bundle = Bundle()
-                        bundle.putString("characterId", event.characterId.toString())
+                        bundle.putParcelable("clickedEpisode", event.episode)
 
                         findNavController().navigate(
-                            R.id.action_charactersFragment_to_characterDetailFragment, bundle
+                            R.id.action_episodesFragment_to_episodeDetailFragment, bundle
                         )
                     }
 

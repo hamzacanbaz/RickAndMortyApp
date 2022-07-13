@@ -31,7 +31,6 @@
             android:nestedScrollingEnabled="false"
             android:setAdapter="@{adapter}"
             android:setItemDecoration="@{itemDecoration}"
-            android:submitEpisodesList="@{viewmodel.episodes}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/episode_item" />
 

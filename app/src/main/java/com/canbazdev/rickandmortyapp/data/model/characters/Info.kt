@@ -1,4 +1,4 @@
-package com.canbazdev.rickandmortyapp.data.remote.model.characters
+package com.canbazdev.rickandmortyapp.data.model.characters
 
 
 import com.google.gson.annotations.SerializedName

@@ -1,11 +1,11 @@
-package com.canbazdev.rickandmortyapp.data.remote.model.episodes
+package com.canbazdev.rickandmortyapp.data.model.characters
 
 
 import com.google.gson.annotations.SerializedName
 
-data class EpisodesResponse(
+data class CharactersResponse(
     @SerializedName("info")
     val info: Info,
     @SerializedName("results")
-    val results: List<Episode>
+    val results: List<CharacterDetail>
 )

@@ -28,7 +28,6 @@
             android:layout_height="wrap_content"
             android:setAdapter="@{adapter}"
             android:setLayoutManager="@{viewmodel.currentLayoutManager}"
-            android:submitList="@{viewmodel.characters}"
             tools:listitem="@layout/character_item" />
 
         <ProgressBar

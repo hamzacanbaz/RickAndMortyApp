@@ -58,6 +58,7 @@ dependencies {
     def hilt_version = "2.42"
     def retrofit_version = "2.9.0"
     def gson_version = "2.8.9"
+    def paging_version = "3.1.1"
 
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -98,6 +99,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_compiler_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedata_version"
 
+
     // DataStore
     implementation "androidx.datastore:datastore:$datastore_version"
     implementation "androidx.datastore:datastore-preferences:$datastore_version"
@@ -124,9 +126,8 @@ dependencies {
     // Power Spinner
     implementation "com.github.skydoves:powerspinner:1.2.3"
 
-
-
-
+    // Paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
 
 
 }

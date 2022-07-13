@@ -4,17 +4,17 @@
     <item
         android:id="@+id/charactersFragment"
         android:icon="@drawable/ic_baseline_person_24"
-        android:title="Characters" />
+        android:title="@string/characters_lower" />
 
     <item
         android:id="@+id/locationsFragment"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="Locations" />
+        android:title="@string/locations_lower" />
 
     <item
         android:id="@+id/episodesFragment"
         android:icon="@drawable/ic_baseline_local_movies_24"
-        android:title="Episodes" />
+        android:title="@string/episodes_lower" />
 
 
 </menu>

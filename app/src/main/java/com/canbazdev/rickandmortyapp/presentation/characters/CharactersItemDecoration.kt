@@ -20,19 +20,10 @@ class CharactersItemDecoration : RecyclerView.ItemDecoration() {
         val spacing = view.resources.getDimensionPixelSize(R.dimen.margin_24dp)
         val isFirstItem = parent.getChildAdapterPosition(view) == 0
         val isSecondItem = parent.getChildAdapterPosition(view) == 1
-        val isItemEven = parent.getChildAdapterPosition(view) % 2 == 0
 
         with(outRect) {
             if (isFirstItem || isSecondItem) top = spacing
             bottom = spacing
-            if (isItemEven) {
-                left = spacing
-                right = spacing / 2
-            } else {
-                right = spacing
-                left = spacing / 2
-
-            }
 
         }
     }

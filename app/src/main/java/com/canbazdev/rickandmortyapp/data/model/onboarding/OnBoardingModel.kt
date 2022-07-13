@@ -1,4 +1,4 @@
-package com.canbazdev.rickandmortyapp.data.model
+package com.canbazdev.rickandmortyapp.data.model.onboarding
 
 /*
 *   Created by hamzacanbaz on 19.06.2022

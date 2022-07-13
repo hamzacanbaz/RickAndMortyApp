@@ -13,5 +13,8 @@ object Constants {
 
     const val BASE_URL = "https://rickandmortyapi.com/api/"
     const val CHARACTER_DETAIL = "characterId"
+    const val EPISODES_DETAIL = "clickedEpisode"
+    const val STARTING_PAGE_INDEX = 1
+
 
 }
