@@ -1,5 +1,5 @@
 # RickAndMortyApp
-
+ 
 
 ### An application developed using Rick and Morty Api and applied MVVM with Clean Architecture
 [Rick and Morty Api Link](https://rickandmortyapi.com/documentation/)
