@@ -7,6 +7,7 @@ import com.canbazdev.rickandmortyapp.domain.model.Character
 import com.canbazdev.rickandmortyapp.domain.usecase.character_detail.GetCharacterDetailUseCase
 import com.canbazdev.rickandmortyapp.util.Constants
 import com.canbazdev.rickandmortyapp.util.Resource
+import com.canbazdev.rickandmortyapp.util.States
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -45,16 +46,16 @@ class CharacterDetailViewModel @Inject constructor(
                 is Resource.Success -> {
                     result.data?.let {
                         _character.value = it
-                        _uiState.value = 1
+                        _uiState.value = States.Success.state
                         _isLoading.value = false
                     }
                 }
                 is Resource.Error -> {
-                    _uiState.value = -1
+                    _uiState.value = States.Error.state
                     _isLoading.value = true
                 }
                 is Resource.Loading -> {
-                    _uiState.value = 0
+                    _uiState.value = States.Loading.state
                     _isLoading.value = true
                 }
             }

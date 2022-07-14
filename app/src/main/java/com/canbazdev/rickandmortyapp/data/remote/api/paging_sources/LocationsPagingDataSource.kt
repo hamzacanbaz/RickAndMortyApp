@@ -3,7 +3,6 @@ package com.canbazdev.rickandmortyapp.data.remote.api.paging_sources
 import android.net.Uri
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.canbazdev.rickandmortyapp.data.model.characters.CharacterDetail
 import com.canbazdev.rickandmortyapp.data.model.locations.Location
 import com.canbazdev.rickandmortyapp.data.remote.api.RickAndMortyService
 import com.canbazdev.rickandmortyapp.util.Constants.STARTING_PAGE_INDEX

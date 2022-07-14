@@ -11,6 +11,7 @@ import com.canbazdev.rickandmortyapp.domain.usecase.locations.GetLocationIdListU
 import com.canbazdev.rickandmortyapp.domain.usecase.locations.GetLocationsUseCase
 import com.canbazdev.rickandmortyapp.util.Event
 import com.canbazdev.rickandmortyapp.util.Resource
+import com.canbazdev.rickandmortyapp.util.States
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
@@ -66,14 +67,14 @@ class LocationsViewModel @Inject constructor(
                         _locations.value = list
 
 //                        parseIdList(list)
-                        _uiState.value = 1
+                        _uiState.value = States.Success.state
                     }
                 }
                 is Resource.Error -> {
-                    _uiState.value = -1
+                    _uiState.value = States.Error.state
                 }
                 is Resource.Loading -> {
-                    _uiState.value = 0
+                    _uiState.value = States.Loading.state
                 }
             }
         }.launchIn(viewModelScope)
@@ -85,16 +86,9 @@ class LocationsViewModel @Inject constructor(
                 is Resource.Success -> {
                     result.data?.let { list ->
                         parseIdList(list)
-                        _uiState.value = 1
                     }
                 }
-                is Resource.Error -> {
-
-                    _uiState.value = -1
-                }
-                is Resource.Loading -> {
-                    _uiState.value = 0
-                }
+                else -> {}
             }
         }.launchIn(viewModelScope)
     }
@@ -113,15 +107,7 @@ class LocationsViewModel @Inject constructor(
         idList: List<String>,
         locationName: String
     ): List<Character> {
-//        _idList.value = ""
-//        if (idList.isNotEmpty()) {
-//            idList.forEach { charLink ->
-//                _idList.value += charLink.substringAfter("character/") + ","
-//            }
-//            _idList.value = _idList.value.substring(0, idList.size - 1)
-//
-//        }
-//        getEpisodeCharacters(locationName)
+
 
 
         chars.value.forEach {
@@ -144,12 +130,8 @@ class LocationsViewModel @Inject constructor(
                                 _uiState.value = 1
                             }
                         }
-                        is Resource.Error -> {
-                            _uiState.value = -1
-                        }
-                        is Resource.Loading -> {
-                            _uiState.value = 0
-                        }
+
+                        else -> {}
                     }
                 }
             } else {
@@ -161,19 +143,15 @@ class LocationsViewModel @Inject constructor(
                                 _uiState.value = 1
                             }
                         }
-                        is Resource.Error -> {
-                            _uiState.value = -1
-                        }
-                        is Resource.Loading -> {
-                            _uiState.value = 0
-                        }
+
+                        else -> {}
                     }
                 }
             }
         }
     }
 
-    fun parseIdList(list: List<Location>) {
+    private fun parseIdList(list: List<Location>) {
         val locationsList = arrayListOf<Location>()
         list.map {
             locationsList.add(it)

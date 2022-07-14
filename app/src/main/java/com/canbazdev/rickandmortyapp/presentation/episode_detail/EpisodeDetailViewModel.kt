@@ -10,6 +10,7 @@ import com.canbazdev.rickandmortyapp.presentation.characters.CharactersAdapter
 import com.canbazdev.rickandmortyapp.util.Constants
 import com.canbazdev.rickandmortyapp.util.Event
 import com.canbazdev.rickandmortyapp.util.Resource
+import com.canbazdev.rickandmortyapp.util.States
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -81,14 +82,14 @@ class EpisodeDetailViewModel @Inject constructor(
                     is Resource.Success -> {
                         result.data?.let { characterList ->
                             _episodeCharacters.value = characterList
-                            _uiState.value = 1
+                            _uiState.value = States.Success.state
                         }
                     }
                     is Resource.Error -> {
-                        _uiState.value = -1
+                        _uiState.value = States.Error.state
                     }
                     is Resource.Loading -> {
-                        _uiState.value = 0
+                        _uiState.value = States.Loading.state
                     }
                 }
 
@@ -114,26 +115,6 @@ class EpisodeDetailViewModel @Inject constructor(
 
     }
 
-//    private fun getCharacterDetail(characterId: String) {
-//        getCharacterDetailUseCase(characterId).onEach { result ->
-//            when (result) {
-//                is Resource.Success -> {
-//                    result.data?.let {
-//                        _character.value = it
-//                        _uiState.value = 1
-//                        _isLoading.value = false
-//                    }
-//                }
-//                is Resource.Error -> {
-//                    _uiState.value = -1
-//                    _isLoading.value = true
-//                }
-//                is Resource.Loading -> {
-//                    _uiState.value = 0
-//                    _isLoading.value = true
-//                }
-//            }
-//        }.launchIn(viewModelScope)
-//    }
+
 
 }

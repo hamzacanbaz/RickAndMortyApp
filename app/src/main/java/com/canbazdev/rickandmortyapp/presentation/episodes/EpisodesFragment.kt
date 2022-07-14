@@ -10,6 +10,7 @@ import com.canbazdev.rickandmortyapp.databinding.FragmentEpisodesBinding
 import com.canbazdev.rickandmortyapp.presentation.base.BaseFragment
 import com.canbazdev.rickandmortyapp.presentation.locations.LocationItemDecoration
 import com.canbazdev.rickandmortyapp.util.Event
+import com.canbazdev.rickandmortyapp.util.States
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -63,7 +64,7 @@ class EpisodesFragment : BaseFragment<FragmentEpisodesBinding>(R.layout.fragment
         }
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect {
-                if (it != 0) {
+                if (it != States.Loading.state) {
                     binding.pbCharacters.visibility = View.GONE
                 }
             }

@@ -7,6 +7,7 @@ import com.canbazdev.rickandmortyapp.domain.model.Episode
 import com.canbazdev.rickandmortyapp.domain.usecase.episodes.GetEpisodesUseCase
 import com.canbazdev.rickandmortyapp.util.Event
 import com.canbazdev.rickandmortyapp.util.Resource
+import com.canbazdev.rickandmortyapp.util.States
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
@@ -31,7 +32,7 @@ class EpisodesViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
 
-    private val _uiState = MutableStateFlow(0)
+    private val _uiState = MutableStateFlow(States.Loading.state)
     val uiState: StateFlow<Int> = _uiState
 
     private val _goToEpisodeDetail = MutableStateFlow(false)
@@ -60,16 +61,16 @@ class EpisodesViewModel @Inject constructor(
                 is Resource.Success -> {
                     result.data?.let { list ->
                         _episodes.value = list
-                        _uiState.value = 1
+                        _uiState.value = States.Success.state
                     }
                 }
                 is Resource.Error -> {
                     _error.value = result.errorMessage ?: "Unexpected error!"
-                    _uiState.value = -1
+                    _uiState.value = States.Error.state
                 }
                 is Resource.Loading -> {
                     _isLoading.value = true
-                    _uiState.value = 0
+                    _uiState.value = States.Loading.state
                 }
             }
         }.launchIn(viewModelScope)

@@ -67,8 +67,8 @@ class RickAndMortyRepositoryImpl @Inject constructor(
         ).flow
     }
 
-    override suspend fun getLocationIdList(): LocationsResponse =
-        rickAndMortyService.getLocationIdList()
+    override suspend fun getLocationIdList(page:Int?): LocationsResponse =
+        rickAndMortyService.getLocationIdList(page)
 
     override suspend fun getEpisodes(): Flow<PagingData<Episode>> {
         return Pager(

@@ -19,8 +19,9 @@ class GetLocationIdListUseCase @Inject constructor(
     operator fun invoke(pageNumber: Int? = null): Flow<Resource<List<Location>>> = flow {
         try {
             emit(Resource.Loading())
-            emit(Resource.Success(rickAndMortyRepository.getLocationIdList().results.map {
-                it.toLocation() }))
+            emit(Resource.Success(rickAndMortyRepository.getLocationIdList(pageNumber).results.map {
+                it.toLocation()
+            }))
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage.orEmpty()))
         } catch (e: IOException) {

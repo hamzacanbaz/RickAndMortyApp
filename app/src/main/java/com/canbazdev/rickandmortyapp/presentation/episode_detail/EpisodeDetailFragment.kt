@@ -12,6 +12,7 @@ import com.canbazdev.rickandmortyapp.presentation.base.BaseFragment
 import com.canbazdev.rickandmortyapp.presentation.characters.CharactersAdapter
 import com.canbazdev.rickandmortyapp.util.Event
 import com.canbazdev.rickandmortyapp.util.LayoutManagers
+import com.canbazdev.rickandmortyapp.util.States
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -30,8 +31,6 @@ class EpisodeDetailFragment :
         charactersAdapter.changeLayoutManager(LayoutManagers.EPISODE_LINEAR_LAYOUT_MANAGER)
         binding.itemDecoration = EpisodeCharactersItemDecoration()
         binding.viewModel = viewModel
-
-//        charactersAdapter.setCharacterList(viewModel.episodeCharacters.value)
         binding.adapter = charactersAdapter
 
     }
@@ -62,6 +61,14 @@ class EpisodeDetailFragment :
                     this.submitData(PagingData.from(viewModel.episodeCharacters.value))
                     this.refresh()
 
+                }
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.uiState.collect {
+                if (it != States.Loading.state) {
+                    binding.pbLoading.visibility = View.GONE
                 }
             }
         }

@@ -32,9 +32,6 @@ class CharactersViewModel @Inject constructor(
     private val _error = MutableStateFlow("")
     val error: StateFlow<String> = _error
 
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading
-
     private val _uiState = MutableStateFlow(0)
     val uiState: StateFlow<Int> = _uiState
 
@@ -100,16 +97,15 @@ class CharactersViewModel @Inject constructor(
                     is Resource.Success -> {
                         result.data?.let { list ->
                             _characters.value = list
-                            _uiState.value = 1
+                            _uiState.value = States.Success.state
                         }
                     }
                     is Resource.Error -> {
                         _error.value = result.errorMessage ?: "Unexpected error!"
-                        _uiState.value = -1
+                        _uiState.value = States.Error.state
                     }
                     is Resource.Loading -> {
-                        _isLoading.value = true
-                        _uiState.value = 0
+                        _uiState.value = States.Loading.state
                     }
                 }
             }
@@ -143,16 +139,15 @@ class CharactersViewModel @Inject constructor(
                     is Resource.Success -> {
                         result.data?.let { list ->
                             _characters.value = list
-                            _uiState.value = 1
+                            _uiState.value = States.Success.state
                         }
                     }
                     is Resource.Error -> {
                         _error.value = result.errorMessage ?: "Unexpected error!"
-                        _uiState.value = -1
+                        _uiState.value = States.Error.state
                     }
                     is Resource.Loading -> {
-                        _isLoading.value = true
-                        _uiState.value = 0
+                        _uiState.value = States.Loading.state
                     }
                 }
             }.launchIn(viewModelScope)

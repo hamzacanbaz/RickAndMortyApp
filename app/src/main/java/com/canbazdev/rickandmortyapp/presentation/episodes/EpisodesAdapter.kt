@@ -9,14 +9,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.canbazdev.rickandmortyapp.databinding.EpisodeItemBinding
 import com.canbazdev.rickandmortyapp.domain.model.Episode
-import com.canbazdev.rickandmortyapp.domain.model.Location
 
 /*
 *   Created by hamzacanbaz on 20.06.2022
 */
 class EpisodesAdapter(
     private val listener: OnItemClickedListener?
-) : PagingDataAdapter<Episode,EpisodesAdapter.EpisodesViewHolder>(DiffUtilCallBack()) {
+) : PagingDataAdapter<Episode, EpisodesAdapter.EpisodesViewHolder>(DiffUtilCallBack()) {
 
     private var episodesList = ArrayList<Episode>()
 

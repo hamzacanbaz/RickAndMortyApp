@@ -3,7 +3,6 @@ package com.canbazdev.rickandmortyapp.domain.repository
 import androidx.paging.PagingData
 import com.canbazdev.rickandmortyapp.data.model.characters.CharacterDetail
 import com.canbazdev.rickandmortyapp.data.model.episodes.Episode
-import com.canbazdev.rickandmortyapp.data.model.episodes.EpisodesResponse
 import com.canbazdev.rickandmortyapp.data.model.locations.Location
 import com.canbazdev.rickandmortyapp.data.model.locations.LocationsResponse
 import kotlinx.coroutines.flow.Flow
@@ -21,6 +20,6 @@ interface RickAndMortyRepository {
 
     suspend fun getCharacterDetailById(characterId: String): CharacterDetail
     suspend fun getLocations(): Flow<PagingData<Location>>
-    suspend fun getLocationIdList(): LocationsResponse
+    suspend fun getLocationIdList(page:Int?): LocationsResponse
     suspend fun getEpisodes(): Flow<PagingData<Episode>>
 }

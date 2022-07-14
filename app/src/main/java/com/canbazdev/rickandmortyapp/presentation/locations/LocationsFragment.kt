@@ -8,6 +8,7 @@ import com.canbazdev.rickandmortyapp.R
 import com.canbazdev.rickandmortyapp.databinding.FragmentLocationsBinding
 import com.canbazdev.rickandmortyapp.presentation.base.BaseFragment
 import com.canbazdev.rickandmortyapp.util.Event
+import com.canbazdev.rickandmortyapp.util.States
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -44,7 +45,6 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>(R.layout.fragme
                         val bundle = Bundle()
                         bundle.putString("characterId", event.locationPosition.toString())
                     }
-
                     else -> {
                     }
                 }
@@ -54,7 +54,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>(R.layout.fragme
 
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect {
-                if (it != 0) {
+                if (it != States.Loading.state) {
                     binding.pbCharacters.visibility = View.GONE
                 }
             }

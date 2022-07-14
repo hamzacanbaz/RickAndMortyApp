@@ -7,22 +7,16 @@ import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.canbazdev.rickandmortyapp.R
 import com.canbazdev.rickandmortyapp.databinding.DialogFilterBinding
 import com.canbazdev.rickandmortyapp.databinding.FragmentCharactersBinding
 import com.canbazdev.rickandmortyapp.presentation.base.BaseFragment
-import com.canbazdev.rickandmortyapp.util.Event
-import com.canbazdev.rickandmortyapp.util.Gender
-import com.canbazdev.rickandmortyapp.util.LayoutManagers
-import com.canbazdev.rickandmortyapp.util.Status
+import com.canbazdev.rickandmortyapp.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -45,7 +39,6 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>(R.layout.frag
         binding.adapter = charactersAdapter
         binding.itemDecoration = CharactersItemDecoration()
         observe()
-
 
 
     }
@@ -71,16 +64,16 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>(R.layout.frag
         }
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect {
-                if (it != 0) {
+                if (it != States.Loading.state) {
                     binding.pbCharacters.visibility = View.GONE
                 }
             }
         }
 
         lifecycleScope.launchWhenStarted {
-                viewModel.characters.collectLatest {
-                    charactersAdapter.submitData(it)
-                }
+            viewModel.characters.collectLatest {
+                charactersAdapter.submitData(it)
+            }
 
 
         }
@@ -93,13 +86,13 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding>(R.layout.frag
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.title) {
-            "Grid" -> {
+            LayoutManagers.GRID_LAYOUT_MANAGER.text -> {
                 viewModel.changeCurrentLayoutManager(LayoutManagers.GRID_LAYOUT_MANAGER)
             }
-            "Linear" -> {
+            LayoutManagers.LINEAR_LAYOUT_MANAGER.text -> {
                 viewModel.changeCurrentLayoutManager(LayoutManagers.LINEAR_LAYOUT_MANAGER)
             }
-            "Filter" -> {
+            LayoutManagers.EPISODE_LINEAR_LAYOUT_MANAGER.text -> {
                 viewModel.clearFilterAreas()
                 setFilterDialog()
             }
